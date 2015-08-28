@@ -1,0 +1,117 @@
+#line 72 ""
+#ifdef DUMMY_PREPROCESSOR_TO_WORK_AROUND_HLSL_COMPILER_LINE_HANDLING
+#endif
+
+#include "HLSLSupport.cginc"
+#include "UnityShaderVariables.cginc"
+#line 72 ""
+#ifdef DUMMY_PREPROCESSOR_TO_WORK_AROUND_HLSL_COMPILER_LINE_HANDLING
+#endif
+
+
+// #pragma vertex vert  
+// #pragma fragment frag 
+
+#include "UnityCG.cginc"
+
+					// User-specified properties
+					uniform sampler2D _MainTex;
+					uniform sampler2D _Normal;
+					uniform sampler2D _Depth;
+					uniform float4 _SpecColor;
+					uniform float4 _LightColor0;
+					uniform float _Shininess;
+					uniform float _AmplifyDepth;
+					uniform float _CelShadingLevels;
+
+					struct VertexInput
+					{
+						float4 vertex : POSITION;
+						float4 color : COLOR;
+						float4 uv : TEXCOORD0;
+					};
+
+					struct VertexOutput
+					{
+						float4 pos : POSITION;
+						float4 color : COLOR;
+						float2 uv : TEXCOORD0;
+						float4 posWorld : TEXCOORD1;
+					};
+
+					VertexOutput vert(VertexInput input)
+					{
+						VertexOutput output;
+
+						output.pos = mul(UNITY_MATRIX_MVP, input.vertex);
+						output.posWorld = mul(_Object2World, input.vertex);
+
+						output.uv = float2(input.uv);
+						output.color = input.color;
+						return output;
+					}
+
+					float4 frag(VertexOutput input) : COLOR
+					{
+						float4 diffuseColor = tex2D(_MainTex, input.uv);
+
+						// To compute the correct normal: 
+						//   1) Get the pixel value from the normal map
+						//   2) Subtract 0.5 and multiply by 2 to convert from the range 0...1 to -1...1
+						//   3) Multiply by world to object matrix, to handle rotation, etc
+						//   4) Negate Z so that lighting works as expected (sprites further away from the camera than
+						//      a light are lit, etc.)
+						//   5) Normalize
+						float3 normalDirection = (tex2D(_Normal, input.uv).xyz - 0.5f) * 2.0f;
+						normalDirection = float3(mul(float4(normalDirection, 1.0f), _World2Object));
+						normalDirection.z *= -1;
+						normalDirection = normalize(normalDirection);
+
+						// To adjust depth:
+						//   1) Get the depth value from the depth map
+						//   2) Subtract 0.5 and multiply by 2 to convert from the range 0...1 to -1...1
+						//   3) Multiply by the amplify depth value, and subtract from the fragment's z position
+						float depthColor = (tex2D(_Depth, input.uv).x - 0.5f) * 2.0f;
+						float3 posWorld = float3(input.posWorld);
+							posWorld.z -= depthColor * _AmplifyDepth;
+						float3 vertexToLightSource = float3(_WorldSpaceLightPos0)-posWorld;
+							float distance = length(vertexToLightSource);
+
+						// The values for attenuation and lightDirection are assuming point lights
+						float attenuation = 1.0 / distance; // Linear attenuation is good enough for now
+						float3 lightDirection = normalize(vertexToLightSource);
+
+							// Compute diffuse part of lighting
+							float normalDotLight = dot(normalDirection, lightDirection);
+						float diffuseLevel = attenuation * max(0.0f, normalDotLight);
+
+						// Compute specular part of lighting
+						float specularLevel;
+						if (normalDotLight < 0.0f)
+						{
+							// Light is on the wrong side, no specular reflection
+							specularLevel = 0.0f;
+						}
+						else
+						{
+							// For orthographic cameras, the view direction is always known
+							float3 viewDirection = float3(0.0f, 0.0f, -1.0f);
+								specularLevel = attenuation * pow(max(0.0, dot(reflect(-lightDirection, normalDirection),
+								viewDirection)), _Shininess);
+						}
+
+						// Add cel-shading if enough levels were specified
+						if (_CelShadingLevels >= 2)
+						{
+							diffuseLevel = floor(diffuseLevel * _CelShadingLevels) / (_CelShadingLevels - 0.5f);
+							specularLevel = floor(specularLevel * _CelShadingLevels) / (_CelShadingLevels - 0.5f);
+						}
+
+						float3 diffuseReflection = float3(diffuseColor)* input.color *
+							float3(_LightColor0)* diffuseLevel;
+						float3 specularReflection = float3(_LightColor0)* float3(_SpecColor)*
+							input.color * specularLevel;
+						return float4(diffuseReflection + specularReflection, diffuseColor.a);
+					}
+
+						

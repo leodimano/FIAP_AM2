@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="5736bf3b-34b3-41f3-9d6b-22b23113b91b" name="GameDev" linkedPackageId="e1ff7029-8789-4bb1-98da-11fc5deccb3b" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="a7d8695b-1b65-461b-a647-2f89d1a1f933">
+      <profileInstance Id="368f70f9-36dc-4b19-a922-769fff8d92fc" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="16214cd3-a2dc-49fe-a1ea-fe3103c6aa18">
+      <profileInstance Id="5e6c1592-4389-41e5-8271-a1b21c4a5b84" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ac85a070-3f53-4b9b-97f0-72b26de550ad" name="Character" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b81005fc-a14a-4ec6-9e1e-39997956941c" />
+        <suppliersInternal>
+          <dependency Id="0ae9b3e2-9ebe-464e-81c4-9ee85ae86828">
+            <enumerationMoniker Id="514feae9-47c4-4c32-bc0b-3e49fc5fddaf" LastKnownName="CharacterState" />
+            <elementDefinition Id="1ef3a463-834b-4d31-8481-accfdd96925e" />
+          </dependency>
+          <dependency Id="18925935-3a84-4b70-aa04-81c6abd41ea3">
+            <enumerationMoniker Id="36e2b1bf-392b-489e-998d-087672ccf845" LastKnownName="FacingDirection" />
+            <elementDefinition Id="b0144cf0-6617-4d57-b4f7-2eee004bbe03" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="4b973921-8723-45d9-aab0-0b3eb79348e6" isSubstitutable="false">
+            <classMoniker Id="9e907b09-d6cb-49cd-a5d3-6d5d418f9bb3" LastKnownName="MonoBehaviour" />
+            <elementDefinition Id="ed44243b-f2d8-4479-a22e-e0919ad1a8c9" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="00cbda5c-c2ed-4c33-8357-ba1a9d367d58" name="Speed" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="afd91bad-ee82-4cb0-8958-0858935fa67e" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="d0cd812f-051e-4648-98c7-0335c1056b59" LastKnownName="float" />
+            </type_NamedElement>
+          </property>
+          <property Id="852c4777-59e1-41b9-a604-7dc936ab9fe3" name="MaxSpeed" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="70c216c3-e730-4a8b-bab3-33ce025543f4" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="d0cd812f-051e-4648-98c7-0335c1056b59" LastKnownName="float" />
+            </type_NamedElement>
+          </property>
+          <property Id="e4d558f5-c42c-4bfb-bcfa-e46ba8c9251e" name="Grounded" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="9024121a-467d-48c9-b073-3ee4c5d2fee4" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="84f46cc5-09d8-478c-b843-81206b64978a" LastKnownName="bool" />
+            </type_NamedElement>
+          </property>
+          <property Id="0aaf8d3c-c823-45d8-8d2e-0328d8754a70" name="JumpForce" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="0bb03d8e-7eab-4605-b35b-1127bc9ea91b" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="d0cd812f-051e-4648-98c7-0335c1056b59" LastKnownName="float" />
+            </type_NamedElement>
+          </property>
+          <property Id="cb6ebc35-78fd-4c6b-98f9-0e2defb0ff34" name="Facing" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3b721b17-8667-4828-8777-a6bb7fc2769c" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="9eda811b-943a-4e9d-983d-2e65d3fdd7c6" LastKnownName="FacingDirection" />
+            </type_NamedElement>
+          </property>
+          <property Id="854c200f-0033-4f80-bd11-632d3ed87cc0" name="State" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="87604ab2-7bae-48d8-ae4a-18f0e71e48b0" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="cc0c5e14-8390-4d09-878c-59ee30ba2814" LastKnownName="CharacterState" />
+            </type_NamedElement>
+          </property>
+          <property Id="54e24c43-ab7e-448b-b7c2-08deaffea64d" name="ActionInRange" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b293c8bc-297d-4778-b764-46c9729eafda" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4e414f64-7fed-4895-a7e8-524769f7e88e" LastKnownName="ActionSpot[]" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="5f10c077-3417-47e4-a4e6-a4a27d49cc43" name="Jump" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b7b226ba-c644-4140-95c6-2281ec9951e8" />
+          </operation>
+          <operation Id="b2a63273-8b8d-4957-a91d-c70ffe0d05b1" name="Run" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bb95184e-bc7d-45d2-99c9-3f174d6edd83" />
+          </operation>
+          <operation Id="5050da36-4387-4579-8340-9b7da4f791b2" name="Turn" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b56cd45e-9715-4f4d-be51-df019676c6a3" />
+          </operation>
+          <operation Id="e2ae05ef-a3cd-44db-8e3c-26f3b7f88fe5" name="Idle" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="598e8ea1-3d0a-4392-8b0c-3a6e95d4eb0d" />
+          </operation>
+          <operation Id="0042da30-54b8-477b-9793-b10d7e4989e8" name="Die" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="0fc55f61-2090-446c-b328-ecddd131a7ec" />
+          </operation>
+          <operation Id="bbef0fd6-f0be-4426-8f34-dc8d1439ae5b" name="Spawn" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9a4b011c-eed3-49be-b313-dc4186ba51c2" />
+          </operation>
+          <operation Id="0276aa4b-aec7-4c3f-906a-30547b72d37a" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1c8e0087-eb4b-4943-ad73-b5884456fb02" />
+          </operation>
+          <operation Id="5ccd61bc-4e7e-4dcb-a1ac-e7c5de10409b" name="Start" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d4dc9c23-c162-420e-8370-93aff4b90a55" />
+          </operation>
+          <operation Id="65352704-7f12-4c7c-928e-f37109e63223" name="FixedUpdate" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="923e8f5d-e426-4601-b137-3eb46103aaf5" />
+          </operation>
+          <operation Id="8a1a83f6-e8ea-4fa9-bdea-4ac32dea5552" name="GroundCheck" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2d0216a5-74c5-4c4d-85c7-74d4736fddda" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="d0cd812f-051e-4648-98c7-0335c1056b59" name="float" isAbstract="false" isLeaf="false" cachedFullName="float">
+        <elementDefinition Id="3930c624-f46a-40f2-9bce-e9b9ca2942d1" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="84f46cc5-09d8-478c-b843-81206b64978a" name="bool" isAbstract="false" isLeaf="false" cachedFullName="bool">
+        <elementDefinition Id="d82bc105-f79a-48df-9819-47062141e6d5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c8d20426-eef2-440b-9c8d-b1be38dfc986" name="ControlledCharacter" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="fdfea347-08e6-436b-8159-0b2d0a10e4fd" />
+        <suppliersInternal>
+          <dependency Id="0a2339d2-868b-44f8-8ed1-512fd72026d6">
+            <enumerationMoniker Id="59d00db9-6223-4978-bd32-516ddf24fad4" LastKnownName="HookState" />
+            <elementDefinition Id="6db71a0e-7f63-4ab5-ada0-ea330db1e9e1" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="d15b3f0a-e4da-4a2b-8418-5621c85ecfb3" isSubstitutable="false">
+            <classMoniker Id="ac85a070-3f53-4b9b-97f0-72b26de550ad" LastKnownName="Character" />
+            <elementDefinition Id="2e96f644-587d-4198-bf0f-0f215de927c2" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="6a242688-1d9c-4da5-8c5f-a253e62d0698" name="Follower" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2743f74d-a768-433c-848a-04bb55781323" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="dc428a9b-0d66-4f58-ac16-62f7ea6cb027" LastKnownName="FollowerCharacter" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="3c99637c-e115-4d1c-b7bf-91912fcb2665" name="CheckForGrapplingHookAction" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2f7242ac-d6d0-4f0c-9ef5-5877129c65f4" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="eb58bd4a-bf3d-45f3-9af1-a290c0516bbd" direction="Return" isUnique="false">
+                  <elementDefinition Id="ce4e1cf1-ef5b-4428-82bc-40c39279b185" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="0df97259-b7b7-4afe-92ca-2bcb297bdecc" LastKnownName="HookSpot" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="1a2777a5-d931-4e0b-af49-0f109c6a03f7" name="ControlledCharacter" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="64f07677-113a-4904-b4aa-077f27ed367d" />
+          </operation>
+          <operation Id="de31fc09-1fdd-4bc1-a42d-408cefe63d15" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="06f6709c-43aa-4d5c-982d-41aac5eb61c4" />
+          </operation>
+          <operation Id="79c2407a-70d8-46ed-af05-ce6af589a600" name="Start" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="3460508b-ad14-4613-ae71-d765c94f6179" />
+          </operation>
+          <operation Id="de5e8b7c-a466-4bbd-9f0d-4a6ac0cbc051" name="FixedUpdate" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="0f73cfa5-cefe-4146-b41e-9c54877cc12c" />
+          </operation>
+          <operation Id="7e887d5e-1143-4ef2-9c6a-d212bbbd2aa3" name="HandleInput" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c875fc2c-5646-4a20-9397-161341ef0536" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="514feae9-47c4-4c32-bc0b-3e49fc5fddaf" name="CharacterState" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="150248cf-6582-40ec-ad0d-2a4e3282d40b" />
+        <ownedLiterals>
+          <enumerationLiteral Id="22412142-4265-42e0-9ac9-846eb7740744" name="Idle">
+            <elementDefinition Id="00d77011-7579-4f14-9d3e-f0b303bdcbe5" />
+            <specification>
+              <literalInteger Id="948ee38b-99c0-4642-92c2-1c6474649b05" name="Integer" value="1">
+                <elementDefinition Id="57c06d5b-f9b9-48ee-adf8-019b5a70240a" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral Id="33c68296-cd7e-4757-9f8f-1968f1a87dbe" name="Jumping">
+            <elementDefinition Id="21d7d338-a448-4401-bbef-33c5b97e3740" />
+            <specification>
+              <literalInteger Id="9dc08705-b820-4c7e-8fe2-3f7a0790daaa" name="Integer" value="4">
+                <elementDefinition Id="812a90b8-4d91-4b92-8fb5-9374e35e1e4f" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral Id="82390900-a8c1-4879-80b1-756c0bd1d7cb" name="Walking">
+            <elementDefinition Id="d6737356-35b5-42a2-991e-7e02b405c9e9" />
+            <specification>
+              <literalInteger Id="7b43a863-2574-45ba-8fd0-1d18af48f754" name="Integer" value="3">
+                <elementDefinition Id="78dc45f9-1138-4d1a-a236-0cfcf62a4b54" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral Id="b3459e6c-e61a-42aa-b4ca-269d85df9fa2" name="Dead">
+            <elementDefinition Id="46650024-a890-48f2-a1da-f215e3c13214" />
+            <specification>
+              <literalInteger Id="447d19b7-f357-4a21-9662-165ee7c715f5" name="Integer" value="0">
+                <elementDefinition Id="3c2b4dff-9746-4f38-a99e-73f890327ca0" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="cc0c5e14-8390-4d09-878c-59ee30ba2814" name="CharacterState" isAbstract="false" isLeaf="false" cachedFullName="GameDev::CharacterState">
+        <elementDefinition Id="150248cf-6582-40ec-ad0d-2a4e3282d40b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a62ebfaf-eb6d-4463-96a1-e81abdd34d86" name="FollowerCharacter" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c3c697d7-f563-4117-a6f8-59322fa92501" />
+        <suppliersInternal>
+          <dependency Id="218e6ec9-0358-46e0-9b05-e1f6104667f8">
+            <enumerationMoniker Id="721ae034-d1ed-46c6-ad52-83ef09316308" LastKnownName="FollowState" />
+            <elementDefinition Id="09722b6f-8db3-4075-b2bc-ffcbb0646823" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="82cdb9f8-2c38-480f-8409-dcdb0b046199" isSubstitutable="false">
+            <classMoniker Id="ac85a070-3f53-4b9b-97f0-72b26de550ad" LastKnownName="Character" />
+            <elementDefinition Id="1efb9d05-8740-4c5d-87b8-3cff5e8b5eb0" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="272568e6-fe11-4277-b4e7-5cb01051e798" name="Following" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1901d326-e024-4430-b4db-4c712778a3b5" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="5d8a680b-96a8-44fa-8878-3080ce61023c" LastKnownName="Character" />
+            </type_NamedElement>
+          </property>
+          <property Id="1f8588db-a80e-404d-be54-59baf2c1bc0e" name="FollowState" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f19e1c75-7474-4fd8-a440-321055cb0bd1" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="0067dab0-4299-49f5-854d-1dbf2d71bb06" name="FollowerCharacter" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a8425847-bc80-4893-821c-416f6209f85e" />
+          </operation>
+          <operation Id="c53e9c10-68f9-42ec-a1a4-97d05647fd4c" name="Follow" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2182eaf3-fef2-46e5-bbb0-1995cf9b768e" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="5d8a680b-96a8-44fa-8878-3080ce61023c" name="Character" isAbstract="false" isLeaf="false" cachedFullName="GameDev::Character">
+        <elementDefinition Id="b81005fc-a14a-4ec6-9e1e-39997956941c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="dc428a9b-0d66-4f58-ac16-62f7ea6cb027" name="FollowerCharacter" isAbstract="false" isLeaf="false" cachedFullName="GameDev::FollowerCharacter">
+        <elementDefinition Id="c3c697d7-f563-4117-a6f8-59322fa92501" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="721ae034-d1ed-46c6-ad52-83ef09316308" name="FollowState" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4f7807d1-f8fe-40dc-89ca-1ac6ac60f0cc" />
+        <ownedLiterals>
+          <enumerationLiteral Id="a774c92d-2a32-4b33-bd8a-82e9a2be6ed8" name="Following">
+            <elementDefinition Id="fe98270e-0e0f-4d3d-ad05-a26f61883fa8" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="65f8356a-e21e-4db0-9e1b-8cd9a366baea" name="NotFollowing">
+            <elementDefinition Id="e4e27e97-0503-4e34-be16-fecb489f82b4" />
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9e907b09-d6cb-49cd-a5d3-6d5d418f9bb3" name="MonoBehaviour" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ee6708ff-a3fe-4c62-b434-599d9ab02f92" />
+        <ownedOperationsInternal>
+          <operation Id="7a9062a7-a23e-46ac-b5d6-3396b037b138" name="Update" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9b688bb2-23a4-4959-9a3a-78cbc6ab6db9" />
+          </operation>
+          <operation Id="974cd342-c047-4f32-a413-6bf17ba3fb3f" name="Start" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="191384dc-2868-4b18-8ead-dbff24aacf82" />
+          </operation>
+          <operation Id="58b98fb9-2397-4bc7-a1ef-0d2144b22663" name="FixedUpdate" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bd95c665-254d-4799-a53b-3468ec50f7ea" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="59d00db9-6223-4978-bd32-516ddf24fad4" name="HookState" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8ac5eeb6-1812-499c-bc28-3b4619795b0a" />
+        <ownedLiterals>
+          <enumerationLiteral Id="26ca520e-1d17-485c-b76f-637121b0b678" name="Hooking">
+            <elementDefinition Id="c2ebdfcd-73d3-41d9-89ce-47413b9f18a6" />
+            <specification>
+              <literalInteger Id="8e3cb1a6-9202-46b1-b69d-e4ecbd3611ab" name="Integer" value="2">
+                <elementDefinition Id="df96482a-6001-46b2-8979-5087bcaaff9a" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral Id="5fcc23e4-bff7-49ae-a23d-5c809457817c" name="HookingRange">
+            <elementDefinition Id="466adac4-144e-48a3-bf91-b10c47e26e97" />
+            <specification>
+              <literalInteger Id="3c81a43c-4788-4747-8a4a-6fd36f8f4d9d" name="Integer" value="1">
+                <elementDefinition Id="aebf12a9-96d0-4190-a82c-d39ea7016820" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral Id="89562006-0e03-42eb-9b96-48e195ca97c2" name="NotHooking">
+            <elementDefinition Id="e19089bc-cd38-4ed3-8a52-e06a903a24e7" />
+            <specification>
+              <literalInteger Id="49cf40c0-8802-4ea4-9277-6408f00eb04a" name="Integer" value="0">
+                <elementDefinition Id="2ad1e8cc-cb82-422b-952b-6c699058731b" />
+              </literalInteger>
+            </specification>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="36e2b1bf-392b-489e-998d-087672ccf845" name="FacingDirection" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="461154fe-159a-405c-839e-e62c3b3e0c5d" />
+        <ownedLiterals>
+          <enumerationLiteral Id="fcee97fa-d3c1-4854-b6de-cadf41bad1a4" name="Right">
+            <elementDefinition Id="441fe1b9-9fa2-4f17-9829-7ed71eccbdcd" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="2ed937da-94de-4f1e-83e3-49d2cec9b3a5" name="Left">
+            <elementDefinition Id="522751a4-e461-4160-a369-9e7c8f983bfc" />
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="9eda811b-943a-4e9d-983d-2e65d3fdd7c6" name="FacingDirection" isAbstract="false" isLeaf="false" cachedFullName="GameDev::FacingDirection">
+        <elementDefinition Id="461154fe-159a-405c-839e-e62c3b3e0c5d" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f649d9ed-9c4c-48ae-9d30-5093644d434b" name="ActionSpot" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ce5edbe6-ad95-4c2d-bc60-bd329894e366" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="32d3ff0a-287e-4dbf-a9eb-75ea70bec39c" name="HookSpot" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a2bc2385-ab68-4e96-85e0-82f6f0549949" />
+        <generalsInternal>
+          <generalization Id="57d57f48-d8e1-4936-83d4-77ff58746385" isSubstitutable="false">
+            <classMoniker Id="f649d9ed-9c4c-48ae-9d30-5093644d434b" LastKnownName="ActionSpot" />
+            <elementDefinition Id="3e4b0426-21d9-4f4c-8016-c02369d823b5" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ac1978da-fadb-41f3-bea3-6c38576e7f5a" name="SlideWallSpot" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d31d5b32-bbfd-4a50-83bc-792bd2f7237e" />
+        <generalsInternal>
+          <generalization Id="5dff5fc3-0cb9-48da-beb8-75b8b61642fe" isSubstitutable="false">
+            <classMoniker Id="f649d9ed-9c4c-48ae-9d30-5093644d434b" LastKnownName="ActionSpot" />
+            <elementDefinition Id="0fadf812-f9a3-424f-969d-553a3b27e823" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="4e414f64-7fed-4895-a7e8-524769f7e88e" name="ActionSpot[]" isAbstract="false" isLeaf="false" cachedFullName="ActionSpot[]">
+        <elementDefinition Id="8315a163-2d82-4065-9e41-1bcaf1427ab3" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="0df97259-b7b7-4afe-92ca-2bcb297bdecc" name="HookSpot" isAbstract="false" isLeaf="false" cachedFullName="GameDev::HookSpot">
+        <elementDefinition Id="a2bc2385-ab68-4e96-85e0-82f6f0549949" />
+      </referencedType>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="e1ff7029-8789-4bb1-98da-11fc5deccb3b" name="GameDev">
+    <elementDefinition Id="cbdd7684-9bd4-493c-b4a5-98e5d2d69b6b" />
+  </package>
+</logicalClassDesignerModel>
