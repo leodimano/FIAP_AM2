@@ -3,10 +3,10 @@
 --- !u!19 &1
 Physics2DSettings:
   m_ObjectHideFlags: 0
-  m_Gravity: {x: 0, y: -26}
-  m_DefaultMaterial: {fileID: 6200000, guid: 7708e558695b0af4f82d29383c87599a, type: 2}
-  m_VelocityIterations: 8
-  m_PositionIterations: 30
+  m_Gravity: {x: 0, y: -30}
+  m_DefaultMaterial: {fileID: 6200000, guid: 8d33741e1bc05ea46acec71b8c7fee5b, type: 2}
+  m_VelocityIterations: 3
+  m_PositionIterations: 8
   m_VelocityThreshold: 1
   m_MaxLinearCorrection: .200000003
   m_MaxAngularCorrection: 8

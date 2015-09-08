@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 451194}
   - 212: {fileID: 21220038}
   - 61: {fileID: 6186414}
-  - 114: {fileID: 11435138}
   m_Layer: 0
   m_Name: ProtoCoin
   m_TagString: Untagged
@@ -43,20 +42,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5}
---- !u!114 &11435138
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75eca690853813a4b9b4df74c819f9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaveAmplitude: .00300000003
-  OmegaY: 4
-  CoinValue: 1
 --- !u!212 &21220038
 SpriteRenderer:
   m_ObjectHideFlags: 1
