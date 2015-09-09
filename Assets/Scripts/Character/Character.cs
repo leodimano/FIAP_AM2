@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     public float DeaccelerationTime;
 
     public float JumpForce;
+	public float H_StairJumpForce;
     private bool StartJumping;
 
     public LayerMask FloorMask;
@@ -68,35 +69,49 @@ public class Character : MonoBehaviour
         switch (CharacterState)
         {
             case CharacterStateEnum.Idle:
-                _rigidBody.isKinematic = false;
+				_rigidBody.gravityScale = 1;
                 Move();
                 Jump();
                 break;
             case CharacterStateEnum.Running:
-                _rigidBody.isKinematic = false;
+			    _rigidBody.gravityScale = 1;
                 Move();
                 Jump();
                 break;
             case CharacterStateEnum.Jumping:
-                _rigidBody.isKinematic = false;
+			    _rigidBody.gravityScale = 1;
                 Move();
                 break;
             case CharacterStateEnum.Climbing:
-                _rigidBody.isKinematic = true;
+				_rigidBody.velocity = new Vector3();
+                _rigidBody.gravityScale = 0;
                 Moveclimbing();
                 JumpClimbing();
                 break;
             case CharacterStateEnum.Dead:
-                _rigidBody.isKinematic = false;
+				_rigidBody.gravityScale = 1;
                 break;
         }
 
         MovingToX = 0;
         MovingToY = 0;
+
+		Debug.Log(_rigidBody.gravityScale);
     }
 
+	/// <summary>
+	/// Method responsible for Manage the CharacterState based on its variable
+	/// </summary>
     private void SetCharacterState()
     {
+		if (!OnFloor && StartJumping)
+		{
+			StartJumping = false;
+			CharacterState = CharacterStateEnum.Jumping;
+			return;
+		}
+
+		// Check if the player is on a Stair
         if (OnStair && CharacterState == CharacterStateEnum.Climbing)
         {
             return;
@@ -104,24 +119,24 @@ public class Character : MonoBehaviour
         else if (OnStair && MovingToY == 1)
         {
             CharacterState = CharacterStateEnum.Climbing;
-            /* Fix Character Position relative to Stair */
+
+			// Corrige a posicao do personagem em relacao a escada
             transform.position = new Vector3(StairCollider.transform.position.x, transform.position.y, transform.position.z);
             return;
         }
 
-        if ((!OnFloor && StartJumping) || (!OnFloor))
-        {
-            StartJumping = false;
-            CharacterState = CharacterStateEnum.Jumping;
-            return;
-        }
+		if (!OnFloor)
+		{
+			StartJumping = false;
+			CharacterState = CharacterStateEnum.Jumping;
+			return;
+		}
 
         if (OnFloor && _rigidBody.velocity.x != 0)
         {
             CharacterState = CharacterStateEnum.Running;
             return;
         }
-
 
         CharacterState = CharacterStateEnum.Idle;
     }
@@ -226,18 +241,22 @@ public class Character : MonoBehaviour
         else if (MovingToY < 0 && OnFloor)
             MovingToY = 0;
 
-        transform.Translate(ClimbingXVelocity * MovingToX * Time.deltaTime, ClimbingYVelocity * MovingToY * Time.deltaTime, 0);
+        transform.Translate(/*ClimbingXVelocity * MovingToX * Time.deltaTime*/ 0, ClimbingYVelocity * MovingToY * Time.deltaTime, 0);
     }
 
     private void JumpClimbing()
     {
         if (DoJump)
         {
-            _rigidBody.isKinematic = false;
-            _jumpForce.Set(0, JumpForce);
-            _rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
-            DoJump = false;
-            StartJumping = true;
+			// Seta o estado do personagem
+			OnStair = false;
+			DoJump = false;
+			StartJumping = true;
+		
+			// Adiciona a forca do pulo a partir da escada
+			_jumpForce.Set(H_StairJumpForce * MovingToX, JumpForce);
+
+			_rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
         }
     }
 
@@ -252,7 +271,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == Constants.TAG_STAIR)
         {
