@@ -26,10 +26,16 @@ public class Character : MonoBehaviour
     public float ClimbingYVelocity;
     private Collider2D StairCollider;
 
+	/* Variáveis do pulo na parede */
+	public bool OnJumpinWall;
+	private Collider2D JumpingWallCollider;
+
     /* Input Variables */
     public bool DoJump;
     public float MovingToX;
     public float MovingToY;
+	public float EnableMovementInSeconds;
+	public bool IsMovementEnabled;
 
     /* RayCast Floor Collision Check */
     public int VerticalRaycastCount = 4;
@@ -58,6 +64,8 @@ public class Character : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _raycastOrigin = new RaycastOrigin();
+
+		IsMovementEnabled = true;
     }
 
     public void FixedUpdate()
@@ -82,6 +90,11 @@ public class Character : MonoBehaviour
 			    _rigidBody.gravityScale = 1;
                 Move();
                 break;
+			case CharacterStateEnum.JumpingWall:
+				_rigidBody.gravityScale = 1;
+				Move();
+				JumpWall();
+				break;
             case CharacterStateEnum.Climbing:
 				_rigidBody.velocity = new Vector3();
                 _rigidBody.gravityScale = 0;
@@ -95,8 +108,6 @@ public class Character : MonoBehaviour
 
         MovingToX = 0;
         MovingToY = 0;
-
-		Debug.Log(_rigidBody.gravityScale);
     }
 
 	/// <summary>
@@ -124,6 +135,12 @@ public class Character : MonoBehaviour
             transform.position = new Vector3(StairCollider.transform.position.x, transform.position.y, transform.position.z);
             return;
         }
+
+		if (OnJumpinWall)
+		{
+			CharacterState = CharacterStateEnum.JumpingWall;
+			return;
+		}
 
 		if (!OnFloor)
 		{
@@ -206,27 +223,36 @@ public class Character : MonoBehaviour
         }
     }
 
+	public IEnumerator EnableMovement(float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		IsMovementEnabled = true;
+	}
+
     private void Move()
     {
-        if (MovingToX > 0 && OnRight)
-            MovingToX = 0;
-        else if (MovingToX < 0 && OnLeft)
-            MovingToX = 0;
+		if (IsMovementEnabled)
+		{
+	        if (MovingToX > 0 && OnRight)
+	            MovingToX = 0;
+	        else if (MovingToX < 0 && OnLeft)
+	            MovingToX = 0;
 
-        if (MovingToY > 0 && OnTop)
-            MovingToY = 0;
-        else if (MovingToY < 0 && OnFloor)
-            MovingToY = 0;
+	        if (MovingToY > 0 && OnTop)
+	            MovingToY = 0;
+	        else if (MovingToY < 0 && OnFloor)
+	            MovingToY = 0;
 
-        if (MovingToX != 0)
-        {
-            _velocity.Set(MovingToX * Velocity, _rigidBody.velocity.y);
-            _rigidBody.velocity = _velocity;
-        }
-        else
-        {
-            _rigidBody.velocity = Vector2.Lerp(_rigidBody.velocity, new Vector2(0, _rigidBody.velocity.y), DeaccelerationTime);
-        }
+	        if (MovingToX != 0)
+	        {
+	            _velocity.Set(MovingToX * Velocity, _rigidBody.velocity.y);
+	            _rigidBody.velocity = _velocity;
+	        }
+	        else
+	        {
+	            _rigidBody.velocity = Vector2.Lerp(_rigidBody.velocity, new Vector2(0, _rigidBody.velocity.y), DeaccelerationTime);
+	        }
+		}
     }
 
     private void Moveclimbing()
@@ -271,6 +297,35 @@ public class Character : MonoBehaviour
         }
     }
 
+	private void JumpWall()
+	{
+		if (DoJump && MovingToX != 0)
+		{
+			IsMovementEnabled = false;
+			StartCoroutine(EnableMovement(EnableMovementInSeconds));
+			_jumpForce.Set(H_StairJumpForce * (MovingToX * -1), JumpForce);
+			_rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
+			DoJump = false;
+			StartJumping = true;
+		}
+	}
+
+	public void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag == Constants.TAG_JUMPING_WALL)
+		{
+			OnJumpinWall = true;
+		}
+	}
+
+	public void OnCollisionExit2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == Constants.TAG_JUMPING_WALL)
+		{
+			OnJumpinWall = false;
+		}
+	}
+
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == Constants.TAG_STAIR)
@@ -301,6 +356,7 @@ public enum CharacterStateEnum
     Idle,
     Running,
     Jumping,
+	JumpingWall,
     Climbing,
     Dead,
 }
