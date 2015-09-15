@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
     public float DeaccelerationTime;
 
     public float JumpForce;
-	public float H_StairJumpForce;
+    public float H_StairJumpForce;
     private bool StartJumping;
 
     public LayerMask FloorMask;
@@ -26,16 +26,16 @@ public class Character : MonoBehaviour
     public float ClimbingYVelocity;
     private Collider2D StairCollider;
 
-	/* Variáveis do pulo na parede */
-	public bool OnJumpinWall;
-	private Collider2D JumpingWallCollider;
+    /* Variáveis do pulo na parede */
+    public bool OnJumpinWall;
+    private Collider2D JumpingWallCollider;
 
     /* Input Variables */
     public bool DoJump;
     public float MovingToX;
     public float MovingToY;
-	public float EnableMovementInSeconds;
-	public bool IsMovementEnabled;
+    public float EnableMovementInSeconds;
+    public bool IsMovementEnabled;
 
     /* RayCast Floor Collision Check */
     public int VerticalRaycastCount = 4;
@@ -65,7 +65,7 @@ public class Character : MonoBehaviour
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _raycastOrigin = new RaycastOrigin();
 
-		IsMovementEnabled = true;
+        IsMovementEnabled = true;
     }
 
     public void FixedUpdate()
@@ -77,32 +77,32 @@ public class Character : MonoBehaviour
         switch (CharacterState)
         {
             case CharacterStateEnum.Idle:
-				_rigidBody.gravityScale = 1;
+                _rigidBody.gravityScale = 1;
                 Move();
                 Jump();
                 break;
             case CharacterStateEnum.Running:
-			    _rigidBody.gravityScale = 1;
+                _rigidBody.gravityScale = 1;
                 Move();
                 Jump();
                 break;
             case CharacterStateEnum.Jumping:
-			    _rigidBody.gravityScale = 1;
+                _rigidBody.gravityScale = 1;
                 Move();
                 break;
-			case CharacterStateEnum.JumpingWall:
-				_rigidBody.gravityScale = 1;
-				Move();
-				JumpWall();
-				break;
+            case CharacterStateEnum.JumpingWall:
+                _rigidBody.gravityScale = 1;
+                Move();
+                JumpWall();
+                break;
             case CharacterStateEnum.Climbing:
-				_rigidBody.velocity = new Vector3();
+                _rigidBody.velocity = new Vector3();
                 _rigidBody.gravityScale = 0;
                 Moveclimbing();
                 JumpClimbing();
                 break;
             case CharacterStateEnum.Dead:
-				_rigidBody.gravityScale = 1;
+                _rigidBody.gravityScale = 1;
                 break;
         }
 
@@ -110,19 +110,19 @@ public class Character : MonoBehaviour
         MovingToY = 0;
     }
 
-	/// <summary>
-	/// Method responsible for Manage the CharacterState based on its variable
-	/// </summary>
+    /// <summary>
+    /// Method responsible for Manage the CharacterState based on its variable
+    /// </summary>
     private void SetCharacterState()
     {
-		if (!OnFloor && StartJumping)
-		{
-			StartJumping = false;
-			CharacterState = CharacterStateEnum.Jumping;
-			return;
-		}
+        if (!OnFloor && StartJumping)
+        {
+            StartJumping = false;
+            CharacterState = CharacterStateEnum.Jumping;
+            return;
+        }
 
-		// Check if the player is on a Stair
+        // Check if the player is on a Stair
         if (OnStair && CharacterState == CharacterStateEnum.Climbing)
         {
             return;
@@ -131,23 +131,23 @@ public class Character : MonoBehaviour
         {
             CharacterState = CharacterStateEnum.Climbing;
 
-			// Corrige a posicao do personagem em relacao a escada
+            // Corrige a posicao do personagem em relacao a escada
             transform.position = new Vector3(StairCollider.transform.position.x, transform.position.y, transform.position.z);
             return;
         }
 
-		if (OnJumpinWall)
-		{
-			CharacterState = CharacterStateEnum.JumpingWall;
-			return;
-		}
+        if (OnJumpinWall)
+        {
+            CharacterState = CharacterStateEnum.JumpingWall;
+            return;
+        }
 
-		if (!OnFloor)
-		{
-			StartJumping = false;
-			CharacterState = CharacterStateEnum.Jumping;
-			return;
-		}
+        if (!OnFloor)
+        {
+            StartJumping = false;
+            CharacterState = CharacterStateEnum.Jumping;
+            return;
+        }
 
         if (OnFloor && _rigidBody.velocity.x != 0)
         {
@@ -194,12 +194,12 @@ public class Character : MonoBehaviour
 
             if (_bottomRaycast)
                 OnFloor = true;
-            else
+            else if (Application.isEditor)
                 Debug.DrawRay(_bottomRaycastOrigin, Vector2.down * VerticalRaycastDistance, Color.red);
 
             if (_topRaycast)
                 OnTop = true;
-            else
+            else if (Application.isEditor)
                 Debug.DrawRay(_topRaycastOrigin, Vector2.up * VerticalRaycastDistance, Color.red);
         }
 
@@ -213,46 +213,46 @@ public class Character : MonoBehaviour
 
             if (_rightRaycast)
                 OnRight = true;
-            else
+            else if (Application.isEditor)
                 Debug.DrawRay(_rightRaycastOrigin, Vector2.right * HorizontalRaycastDistance, Color.red);
 
             if (_leftRaycast)
                 OnLeft = true;
-            else
+            else if (Application.isEditor)
                 Debug.DrawRay(_leftRaycastOrigin, Vector2.left * HorizontalRaycastDistance, Color.red);
         }
     }
 
-	public IEnumerator EnableMovement(float seconds)
-	{
-		yield return new WaitForSeconds(seconds);
-		IsMovementEnabled = true;
-	}
+    public IEnumerator EnableMovement(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        IsMovementEnabled = true;
+    }
 
     private void Move()
     {
-		if (IsMovementEnabled)
-		{
-	        if (MovingToX > 0 && OnRight)
-	            MovingToX = 0;
-	        else if (MovingToX < 0 && OnLeft)
-	            MovingToX = 0;
+        if (IsMovementEnabled)
+        {
+            if (MovingToX > 0 && OnRight)
+                MovingToX = 0;
+            else if (MovingToX < 0 && OnLeft)
+                MovingToX = 0;
 
-	        if (MovingToY > 0 && OnTop)
-	            MovingToY = 0;
-	        else if (MovingToY < 0 && OnFloor)
-	            MovingToY = 0;
+            if (MovingToY > 0 && OnTop)
+                MovingToY = 0;
+            else if (MovingToY < 0 && OnFloor)
+                MovingToY = 0;
 
-	        if (MovingToX != 0)
-	        {
-	            _velocity.Set(MovingToX * Velocity, _rigidBody.velocity.y);
-	            _rigidBody.velocity = _velocity;
-	        }
-	        else
-	        {
-	            _rigidBody.velocity = Vector2.Lerp(_rigidBody.velocity, new Vector2(0, _rigidBody.velocity.y), DeaccelerationTime);
-	        }
-		}
+            if (MovingToX != 0)
+            {
+                _velocity.Set(MovingToX * Velocity, _rigidBody.velocity.y);
+                _rigidBody.velocity = _velocity;
+            }
+            else
+            {
+                _rigidBody.velocity = Vector2.Lerp(_rigidBody.velocity, new Vector2(0, _rigidBody.velocity.y), DeaccelerationTime);
+            }
+        }
     }
 
     private void Moveclimbing()
@@ -274,15 +274,15 @@ public class Character : MonoBehaviour
     {
         if (DoJump)
         {
-			// Seta o estado do personagem
-			OnStair = false;
-			DoJump = false;
-			StartJumping = true;
-		
-			// Adiciona a forca do pulo a partir da escada
-			_jumpForce.Set(H_StairJumpForce * MovingToX, JumpForce);
+            // Seta o estado do personagem
+            OnStair = false;
+            DoJump = false;
+            StartJumping = true;
 
-			_rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
+            // Adiciona a forca do pulo a partir da escada
+            _jumpForce.Set(H_StairJumpForce * MovingToX, JumpForce);
+
+            _rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
         }
     }
 
@@ -297,34 +297,34 @@ public class Character : MonoBehaviour
         }
     }
 
-	private void JumpWall()
-	{
-		if (DoJump && MovingToX != 0)
-		{
-			IsMovementEnabled = false;
-			StartCoroutine(EnableMovement(EnableMovementInSeconds));
-			_jumpForce.Set(H_StairJumpForce * (MovingToX * -1), JumpForce);
-			_rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
-			DoJump = false;
-			StartJumping = true;
-		}
-	}
+    private void JumpWall()
+    {
+        if (DoJump && MovingToX != 0)
+        {
+            IsMovementEnabled = false;
+            StartCoroutine(EnableMovement(EnableMovementInSeconds));
+            _jumpForce.Set(H_StairJumpForce * (MovingToX * -1), JumpForce);
+            _rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
+            DoJump = false;
+            StartJumping = true;
+        }
+    }
 
-	public void OnCollisionEnter2D(Collision2D collision)
-	{
-		if(collision.gameObject.tag == Constants.TAG_JUMPING_WALL)
-		{
-			OnJumpinWall = true;
-		}
-	}
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == Constants.TAG_JUMPING_WALL)
+        {
+            OnJumpinWall = true;
+        }
+    }
 
-	public void OnCollisionExit2D(Collision2D collision)
-	{
-		if (collision.gameObject.tag == Constants.TAG_JUMPING_WALL)
-		{
-			OnJumpinWall = false;
-		}
-	}
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == Constants.TAG_JUMPING_WALL)
+        {
+            OnJumpinWall = false;
+        }
+    }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
@@ -356,7 +356,7 @@ public enum CharacterStateEnum
     Idle,
     Running,
     Jumping,
-	JumpingWall,
+    JumpingWall,
     Climbing,
     Dead,
 }

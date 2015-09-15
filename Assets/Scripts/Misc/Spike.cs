@@ -68,7 +68,6 @@ public class Spike : MonoBehaviour {
 
 	public IEnumerator HabilitarMovimento(float segundos)
 	{
-		Debug.Log(segundos);
 		yield return new WaitForSeconds(segundos);
 		_movimentoHabilitado = true;
 	}
