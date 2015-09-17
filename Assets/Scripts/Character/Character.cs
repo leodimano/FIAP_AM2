@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
     public bool OnTop;
     public bool OnLeft;
     public bool OnRight;
+    public bool FacingRight;
 
     public bool OnStair;
     public float ClimbingXVelocity;
@@ -56,6 +57,10 @@ public class Character : MonoBehaviour
     private Vector2 _velocity;
     private Vector2 _jumpForce;
 
+
+    /* Sprite */
+    private SpriteRenderer _mainSprite;
+
     public void Awake()
     {
         _velocity = new Vector2();
@@ -65,7 +70,10 @@ public class Character : MonoBehaviour
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _raycastOrigin = new RaycastOrigin();
 
+        _mainSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
         IsMovementEnabled = true;
+        FacingRight = true;
     }
 
     public void FixedUpdate()
@@ -106,8 +114,27 @@ public class Character : MonoBehaviour
                 break;
         }
 
+        ChangeDirection();
+
         MovingToX = 0;
         MovingToY = 0;
+    }
+
+    /// <summary>
+    /// Método responsável por mudar a direção do personagem
+    /// </summary>
+    private void ChangeDirection()
+    {
+        if (FacingRight && _rigidBody.velocity.x < -1)
+        {
+            FacingRight = false;
+            _mainSprite.transform.localScale = new Vector3(_mainSprite.transform.localScale.x * -1, _mainSprite.transform.localScale.y, _mainSprite.transform.localScale.z);
+        }
+        else if (!FacingRight && _rigidBody.velocity.x > 1)
+        {
+            FacingRight = true;
+            _mainSprite.transform.localScale = new Vector3(_mainSprite.transform.localScale.x * -1, _mainSprite.transform.localScale.y, _mainSprite.transform.localScale.z);
+        }
     }
 
     /// <summary>
