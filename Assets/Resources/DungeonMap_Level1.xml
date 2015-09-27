@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="121" height="52" tilewidth="100" tileheight="100" nextobjectid="148">
+ <tileset firstgid="1" name="Rock_Background" tilewidth="100" tileheight="100" tilecount="1">
+  <image source="Sprites/rockrock.png" width="100" height="100"/>
+  <terraintypes>
+   <terrain name="RockBaground" tile="-1"/>
+  </terraintypes>
+  <tile id="0" terrain="0,0,0,0"/>
+ </tileset>
+ <tileset firstgid="2" name="finalblockjunto" tilewidth="100" tileheight="100" tilecount="9">
+  <image source="Sprites/finalblockjunto.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="11" name="seamless-rock_texture" tilewidth="100" tileheight="100" tilecount="6">
+  <image source="Sprites/seamless-rock_texture.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="17" name="balanço (1)" tilewidth="100" tileheight="100" tilecount="1">
+  <image source="Sprites/balanço (1).png" width="100" height="100"/>
+ </tileset>
+ <tileset firstgid="18" name="escada" tilewidth="100" tileheight="100" tilecount="1">
+  <image source="Sprites/escada.png" width="100" height="100"/>
+ </tileset>
+ <tileset firstgid="19" name="trepadeira" tilewidth="100" tileheight="100" tilecount="1">
+  <image source="Sprites/trepadeira.png" width="100" height="100"/>
+ </tileset>
+ <layer name="DungeonRock_BG" width="121" height="52">
+  <data encoding="base64" compression="zlib">
+   eJzt0aENADAQxLA/8vuPXFJQ0gVOBpbCk5nJtY9Qyd9+/vbbTwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPQ4B3Bi9
+  </data>
+ </layer>
+ <layer name="Terrain" width="121" height="52">
+  <data encoding="base64" compression="zlib">
+   eJztm9tuxCAMRFG33V7+/4PbqIsWbRyCwTY2mZHmKTfHJwFMyC2ldPvze9rr7bENju37w59pr49iOxzfYLy+wXh9g7G8v50YjHVM5XOWajF9pfNnA47NuKbyHe9tO3qP174eGP8rM+65l/L5sMgF93oSfRQY2+ai7HN+GvbXZmw9t1SLKe9DzYFFYsyVNuOZY9meObAeRtz3ylpbfKsy5sQ7wng1gfH6AuP1RdVftT6oNu+gWTOC8XritBcrMb4J7RNBHhnnupGq1XpF1Qot9eQK8si4jEm6/ud6BWkxHpnD4TDQqK3LnHDEvU/JdqomLcYWY0ateROrmsZqDOOxrZ4tMKaP98q4pc94FRjTx3tlvMXHiW17Jiz4grGcuIw3WTG+998WS2C8V2TGVN802rZEZKxVS3tgPDqW8MC4fE5b6sue99jye5B0rRyZcWZL5aiWnxwfJ4czvvlJKQLjo1qn9X04Oo4ja8aSisBYK78eYmjJ56iiMZb8Rs6ZMwZj+pzSjGeO08GYPicYgzE3xhmMj8buYPzcrr2WX0vWbCMz9n7/r5rFNhpjrbUAmv9NzGYbjXEkeWELxvLyxhaM5eSVLRiPyztbMO5XFLZgzFc0tmDcrqhsr8L4bE1s7Zt+dLZXYXwWS7R/s2fnMwuM/Vnqnz3J9YZWsVyF8dXtYW0sDMOwJ/8C025Rhw==
+  </data>
+ </layer>
+ <layer name="RockPlatform" width="121" height="52">
+  <data encoding="base64" compression="zlib">
+   eJzt2jsKwCAQBcC9gJ/7nzYWNhGiRQhLYAYWBRvLh88IAAAAAAAAAPhWG1PG1Ln23OsAAAAAAAAQ9w6nPuyze50e556pbc4AALKt/2bWvCXHAAC8t3vnkrkAAAAAAPi7C+bOAl8=
+  </data>
+ </layer>
+ <layer name="Hookers" width="121" height="52">
+  <data encoding="base64" compression="zlib">
+   eJzt1zERAAAIA7FawL9ZRDDRS9ZX8AkAAADwxRw7AAAAPTwiAAAAAAAAAAAAAAAAAAAAAHRbapQARQ==
+  </data>
+ </layer>
+ <layer name="JumpingWall" width="121" height="52">
+  <data encoding="base64" compression="zlib">
+   eJzt2bENACEMADF2YP9dv6GnQS842VImuKTKGAAAAADnzTV0ady3a2wH3qdxn8Z9GvdpDAAAAAAAANzKv7JP4z6N+zSG/7i3Po37NO7TGAAAAAAAgFd9XCkC+Q==
+  </data>
+ </layer>
+ <layer name="Stairs" width="121" height="52">
+  <data encoding="base64" compression="zlib">
+   eJzt2MENgDAMBMHUQP/F0gHig3A2MxWcvD+vBQAAALx1/T2Az2ncp3Gfxn0a92ncp3Gfxn0a92nc99RY/waN+3ZqPG3PLjTu07hP4z6NzzbtptP2FEy76bQ9BdNuOm0PAAAAAAB+tyfQuE/jPo37NO7TuE/jPo37NAYA+N8NTx8DGQ==
+  </data>
+ </layer>
+ <objectgroup name="CollisionsFloor">
+  <object id="23" x="0" y="0" width="300" height="1200"/>
+  <object id="24" x="300" y="1100" width="400" height="100"/>
+  <object id="25" x="700" y="1000" width="300" height="3900"/>
+  <object id="26" x="1000" y="4800" width="1800" height="100"/>
+  <object id="27" x="2800" y="4500" width="900" height="500"/>
+  <object id="28" x="4300" y="4500" width="200" height="500"/>
+  <object id="30" x="3700" y="4900" width="600" height="100"/>
+  <object id="31" x="4500" y="4400" width="200" height="100"/>
+  <object id="32" x="4700" y="4300" width="200" height="100"/>
+  <object id="33" x="4900" y="4200" width="200" height="100"/>
+  <object id="34" x="5100" y="4100" width="200" height="100"/>
+  <object id="35" x="5300" y="4000" width="200" height="100"/>
+  <object id="36" x="5500" y="3900" width="200" height="100"/>
+  <object id="37" x="5700" y="3800" width="200" height="100"/>
+  <object id="38" x="5900" y="3700" width="200" height="100"/>
+  <object id="39" x="6100" y="3600" width="200" height="100"/>
+  <object id="40" x="6300" y="3500" width="200" height="100"/>
+  <object id="41" x="6500" y="3400" width="200" height="100"/>
+  <object id="43" x="6700" y="2700" width="100" height="700"/>
+  <object id="44" x="1400" y="700" width="300" height="3100"/>
+  <object id="45" x="1700" y="3500" width="1700" height="300"/>
+  <object id="53" x="3700" y="3100" width="2600" height="100"/>
+  <object id="54" x="3600" y="3200" width="100" height="600"/>
+  <object id="56" x="3400" y="2900" width="600" height="100"/>
+  <object id="57" x="3400" y="3000" width="100" height="500"/>
+  <object id="58" x="4000" y="2800" width="200" height="100"/>
+  <object id="59" x="4200" y="2700" width="400" height="100"/>
+  <object id="60" x="4600" y="2800" width="200" height="100"/>
+  <object id="61" x="4800" y="2900" width="600" height="100"/>
+  <object id="62" x="5400" y="2200" width="900" height="100"/>
+  <object id="64" x="5400" y="2300" width="200" height="800"/>
+  <object id="65" x="5600" y="2800" width="100" height="100"/>
+  <object id="66" x="5900" y="2600" width="800" height="100"/>
+  <object id="67" x="6600" y="2300" width="100" height="100"/>
+  <object id="68" x="6700" y="1900" width="100" height="500"/>
+  <object id="69" x="1700" y="700" width="1200" height="100"/>
+  <object id="70" x="2900" y="800" width="400" height="400"/>
+  <object id="71" x="3300" y="700" width="2400" height="100"/>
+  <object id="72" x="5700" y="800" width="400" height="200"/>
+  <object id="73" x="6100" y="700" width="800" height="100"/>
+  <object id="74" x="6900" y="800" width="100" height="400"/>
+  <object id="75" x="7000" y="1100" width="1100" height="100"/>
+  <object id="79" x="8100" y="1200" width="500" height="300"/>
+  <object id="80" x="2800" y="3000" width="300" height="100"/>
+  <object id="81" x="1900" y="3000" width="500" height="100"/>
+  <object id="82" x="2300" y="1600" width="500" height="100"/>
+  <object id="83" x="2000" y="1900" width="1500" height="200"/>
+  <object id="88" x="3500" y="1700" width="300" height="200"/>
+  <object id="89" x="3800" y="1800" width="1800" height="100"/>
+  <object id="90" x="3500" y="2000" width="1100" height="100"/>
+  <object id="91" x="4600" y="1900" width="200" height="100"/>
+  <object id="92" x="5600" y="1700" width="1400" height="200"/>
+  <object id="93" x="6000" y="1600" width="100" height="100"/>
+  <object id="94" x="6900" y="1600" width="100" height="100"/>
+  <object id="95" x="6900" y="1900" width="100" height="100"/>
+  <object id="96" x="7000" y="2000" width="1100" height="100"/>
+  <object id="97" x="8100" y="1900" width="1300" height="100"/>
+  <object id="98" x="9300" y="4300" width="100" height="400"/>
+  <object id="99" x="9400" y="4700" width="2000" height="100"/>
+  <object id="101" x="9900" y="3900" width="1000" height="100"/>
+  <object id="102" x="9900" y="3400" width="1000" height="100"/>
+  <object id="103" x="9900" y="2900" width="1000" height="100"/>
+  <object id="104" x="9400" y="2700" width="300" height="100"/>
+  <object id="105" x="9400" y="2900" width="100" height="100"/>
+  <object id="106" x="9500" y="2800" width="100" height="100"/>
+  <object id="107" x="9300" y="2000" width="100" height="400"/>
+  <object id="108" x="11400" y="2500" width="500" height="100"/>
+  <object id="109" x="11900" y="1500" width="100" height="1000"/>
+  <object id="110" x="9400" y="1400" width="2500" height="100"/>
+  <object id="111" x="9300" y="900" width="2800" height="100"/>
+  <object id="112" x="8700" y="400" width="3400" height="100"/>
+  <object id="114" x="700" y="0" width="11400" height="100"/>
+  <object id="115" x="700" y="100" width="100" height="600"/>
+  <object id="116" x="800" y="600" width="600" height="100"/>
+  <object id="118" x="11400" y="3300" width="100" height="1400"/>
+  <object id="121" x="3400" y="3700" width="200" height="100"/>
+  <object id="132" x="8600" y="500" width="100" height="300"/>
+  <object id="136" x="9300" y="3000" width="100" height="400"/>
+  <object id="137" x="9300" y="3800" width="100" height="500"/>
+  <object id="138" x="11400" y="2600" width="100" height="300"/>
+ </objectgroup>
+ <objectgroup name="CollisionsStair">
+  <object id="122" x="1000" y="800" width="100" height="1700"/>
+  <object id="123" x="1700" y="1800" width="100" height="1000"/>
+  <object id="124" x="5300" y="2000" width="100" height="800"/>
+  <object id="125" x="11300" y="3800" width="100" height="900"/>
+ </objectgroup>
+ <objectgroup name="CollisionsJumpWall">
+  <object id="130" x="9300" y="1000" width="100" height="500"/>
+  <object id="131" x="8600" y="800" width="100" height="700"/>
+  <object id="134" x="9300" y="3400" width="100" height="400"/>
+  <object id="135" x="11400" y="2900" width="100" height="400"/>
+ </objectgroup>
+ <objectgroup name="CollisionDeath">
+  <object id="139" x="1700" y="3300" width="1700" height="200"/>
+  <object id="140" x="3700" y="4700" width="600" height="200"/>
+  <object id="144" x="3900" y="1600" width="1600" height="200"/>
+ </objectgroup>
+</map>

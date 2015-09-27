@@ -159,7 +159,7 @@ public class Character : MonoBehaviour
             CharacterState = CharacterStateEnum.Climbing;
 
             // Corrige a posicao do personagem em relacao a escada
-            transform.position = new Vector3(StairCollider.transform.position.x, transform.position.y, transform.position.z);
+            transform.position = new Vector3(StairCollider.bounds.center.x, transform.position.y, transform.position.z);
             return;
         }
 
@@ -292,6 +292,11 @@ public class Character : MonoBehaviour
         if (MovingToY > 0 && OnTop)
             MovingToY = 0;
         else if (MovingToY < 0 && OnFloor)
+            MovingToY = 0;
+
+        // Bloqueia o movimento do personagem alem dos limites da escada
+        if ((MovingToY == 1 && _boxCollider2D.bounds.max.y >= StairCollider.bounds.max.y) ||
+            (MovingToY == -1 && _boxCollider2D.bounds.min.y <= StairCollider.bounds.min.y))
             MovingToY = 0;
 
         transform.Translate(/*ClimbingXVelocity * MovingToX * Time.deltaTime*/ 0, ClimbingYVelocity * MovingToY * Time.deltaTime, 0);
