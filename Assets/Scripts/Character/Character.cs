@@ -2,12 +2,13 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, HookableInterface
 {
-    /* States */
+    /* Estados do personagem */
     public CharacterStateEnum CharacterState;
+    private HookStateEnum _hookState;
 
-    /* Physics Variables */
+    /* Variaveis para controle da fisica */
     public float Velocity;
     public float DeaccelerationTime;
 
@@ -29,9 +30,8 @@ public class Character : MonoBehaviour
 
     /* Variáveis do pulo na parede */
     public bool OnJumpinWall;
-    private Collider2D JumpingWallCollider;
 
-    /* Input Variables */
+    /* Variaveis de Input */
     public bool DoJump;
     public float MovingToX;
     public float MovingToY;
@@ -50,13 +50,12 @@ public class Character : MonoBehaviour
     RaycastOrigin _raycastOrigin;
     BoxCollider2D _boxCollider2D;
 
-
     /* Required Components */
     private Rigidbody2D _rigidBody;
 
+    /* Variaveis Stacked */
     private Vector2 _velocity;
     private Vector2 _jumpForce;
-
 
     /* Sprite */
     private SpriteRenderer _mainSprite;
@@ -96,7 +95,29 @@ public class Character : MonoBehaviour
                 break;
             case CharacterStateEnum.Jumping:
                 _rigidBody.gravityScale = 1;
+
                 Move();
+
+                switch (_hookState)
+                {
+                    case HookStateEnum.HookInRange:
+                        if (DoJump)
+                        {
+                            transform.GetComponent<Hook>().DoHooking();
+                            DoJump = false;
+                        }
+                        break;
+                    case HookStateEnum.Hooking:
+                        if (DoJump)
+                        {
+                            transform.GetComponent<Hook>().UnDoHooking();
+                            DoJump = false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
                 break;
             case CharacterStateEnum.JumpingWall:
                 _rigidBody.gravityScale = 1;
@@ -121,7 +142,7 @@ public class Character : MonoBehaviour
     }
 
     /// <summary>
-    /// Método responsável por mudar a direção do personagem
+    /// Metodo responsavel por alterar a direcao do sprite do personagem
     /// </summary>
     private void ChangeDirection()
     {
@@ -138,7 +159,7 @@ public class Character : MonoBehaviour
     }
 
     /// <summary>
-    /// Method responsible for Manage the CharacterState based on its variable
+    /// Metodo responsable por gerenciar o estado do personagem
     /// </summary>
     private void SetCharacterState()
     {
@@ -185,6 +206,9 @@ public class Character : MonoBehaviour
         CharacterState = CharacterStateEnum.Idle;
     }
 
+    /// <summary>
+    /// Metodo responsavel por gerenciar a colisao dos raycasts
+    /// </summary>
     private void CheckCollision()
     {
         OnFloor = false;
@@ -250,12 +274,20 @@ public class Character : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo responsavel por habilitar o movimento do personagem
+    /// </summary>
+    /// <param name="seconds">Segundos para habilitar o movimento</param>
+    /// <returns></returns>
     public IEnumerator EnableMovement(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         IsMovementEnabled = true;
     }
 
+    /// <summary>
+    /// Metodo responsavel por executar o movimento do personagem
+    /// </summary>
     private void Move()
     {
         if (IsMovementEnabled)
@@ -282,6 +314,9 @@ public class Character : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo responsavel por executar o movimento do personagem na escada
+    /// </summary>
     private void Moveclimbing()
     {
         if (MovingToX > 0 && OnRight)
@@ -302,6 +337,9 @@ public class Character : MonoBehaviour
         transform.Translate(/*ClimbingXVelocity * MovingToX * Time.deltaTime*/ 0, ClimbingYVelocity * MovingToY * Time.deltaTime, 0);
     }
 
+    /// <summary>
+    /// Metodo responsavel por executar o pulo do personagem na escada
+    /// </summary>
     private void JumpClimbing()
     {
         if (DoJump)
@@ -318,6 +356,9 @@ public class Character : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo responsavel por executar o pulo do personagem
+    /// </summary>
     private void Jump()
     {
         if (DoJump)
@@ -329,6 +370,9 @@ public class Character : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo responsavel por executar o pulo do personagem na parede
+    /// </summary>
     private void JumpWall()
     {
         if (DoJump && MovingToX != 0)
@@ -380,6 +424,26 @@ public class Character : MonoBehaviour
     {
         public Vector2 BottomRight, BottomLeft;
         public Vector2 TopRight, TopLeft;
+    }
+
+    public HookStateEnum HookState
+    {
+        get
+        {
+            return _hookState;
+        }
+        set
+        {
+            _hookState = value;
+        }
+    }
+
+    public Rigidbody2D HookableBody
+    {
+        get
+        {
+            return _rigidBody;
+        }
     }
 }
 
