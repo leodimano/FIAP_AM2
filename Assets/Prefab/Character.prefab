@@ -29,9 +29,9 @@ GameObject:
   - 61: {fileID: 6122108}
   - 114: {fileID: 11445758}
   - 114: {fileID: 11413914}
-  - 58: {fileID: 5861360}
-  - 232: {fileID: 23210946}
-  - 114: {fileID: 11476636}
+  - 58: {fileID: 5862272}
+  - 232: {fileID: 23206676}
+  - 114: {fileID: 11422230}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -55,25 +55,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &177494
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 490866}
-  - 58: {fileID: 5862412}
-  - 50: {fileID: 5056506}
-  - 232: {fileID: 23245154}
-  - 114: {fileID: 11451142}
-  m_Layer: 0
-  m_Name: HookWeapon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &403276
 Transform:
   m_ObjectHideFlags: 1
@@ -86,7 +67,6 @@ Transform:
   m_Children:
   - {fileID: 479052}
   - {fileID: 408090}
-  - {fileID: 490866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &408090
@@ -113,34 +93,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 403276}
   m_RootOrder: 0
---- !u!4 &490866
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177494}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 403276}
-  m_RootOrder: 2
---- !u!50 &5056506
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177494}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 2
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!50 &5084338
 Rigidbody2D:
   serializedVersion: 2
@@ -157,25 +109,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5861360
+--- !u!58 &5862272
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112980}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: .5
---- !u!58 &5862412
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177494}
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -239,6 +178,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460693cf7410c4b43bde9ae19f36956a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11422230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bccfc01c46a0b24dbc24178178620a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HookSprite: {fileID: 21300000, guid: 0a33cbac01d424342acf53dba94767a5, type: 3}
+  HookRopeSprite: {fileID: 21300000, guid: da7d152fc09df50409b057e2cfd5ed37, type: 3}
 --- !u!114 &11445758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,17 +228,8 @@ MonoBehaviour:
   HorizontalRaycastCount: 4
   VerticalRaycastDistance: .150000006
   HorizontalRaycastDistance: .0799999982
---- !u!114 &11451142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bccfc01c46a0b24dbc24178178620a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  HookingVelocity: 500
+  HookingDeaccelerationRate: .25
 --- !u!114 &11476444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -307,17 +250,6 @@ MonoBehaviour:
   RadiusVariance: 1
   RadiusVarianceT: 10
   NewRadiusVariance: 110
---- !u!114 &11476636
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bccfc01c46a0b24dbc24178178620a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21243510
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -344,30 +276,17 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9488eef04d087c74b85504e9672856d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!232 &23210946
+--- !u!232 &23206676
 DistanceJoint2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112980}
-  m_Enabled: 1
-  m_EnableCollision: 0
+  m_Enabled: 0
+  m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_Distance: 1
-  m_MaxDistanceOnly: 0
---- !u!232 &23245154
-DistanceJoint2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177494}
-  m_Enabled: 1
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 36.4087143, y: -9.91483402}
   m_Distance: 4
   m_MaxDistanceOnly: 0
 --- !u!1001 &100100000

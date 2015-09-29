@@ -6,7 +6,6 @@ public class Character : MonoBehaviour, HookableInterface
 {
     /* Estados do personagem */
     public CharacterStateEnum CharacterState;
-    private HookStateEnum _hookState;
 
     /* Variaveis para controle da fisica */
     public float Velocity;
@@ -44,6 +43,12 @@ public class Character : MonoBehaviour, HookableInterface
     public float VerticalRaycastDistance = 0.15f;
     public float HorizontalRaycastDistance = 0.15f;
 
+    /* Variaveis de controle do Gancho */
+    public float HookingVelocity;
+    public float HookingDeaccelerationRate;
+    private HookStateEnum _hookState;
+
+
     const float _skinWidth = .015f;
     float _verticalRaycastSpacing;
     float _horizontalRaycastSpacing;
@@ -53,7 +58,7 @@ public class Character : MonoBehaviour, HookableInterface
     /* Required Components */
     private Rigidbody2D _rigidBody;
 
-    /* Variaveis Stacked */
+    /* Variaveis de memoria Stacked */
     private Vector2 _velocity;
     private Vector2 _jumpForce;
 
@@ -84,23 +89,25 @@ public class Character : MonoBehaviour, HookableInterface
         switch (CharacterState)
         {
             case CharacterStateEnum.Idle:
+                _rigidBody.drag = 0;
                 _rigidBody.gravityScale = 1;
                 Move();
                 Jump();
                 break;
             case CharacterStateEnum.Running:
+                _rigidBody.drag = 0;
                 _rigidBody.gravityScale = 1;
                 Move();
                 Jump();
                 break;
             case CharacterStateEnum.Jumping:
+                _rigidBody.drag = 0;
                 _rigidBody.gravityScale = 1;
-
-                Move();
 
                 switch (_hookState)
                 {
                     case HookStateEnum.HookInRange:
+                        Move();
                         if (DoJump)
                         {
                             transform.GetComponent<Hook>().DoHooking();
@@ -108,29 +115,40 @@ public class Character : MonoBehaviour, HookableInterface
                         }
                         break;
                     case HookStateEnum.Hooking:
+
+                        _rigidBody.drag = HookingDeaccelerationRate;
+
                         if (DoJump)
                         {
                             transform.GetComponent<Hook>().UnDoHooking();
                             DoJump = false;
                         }
+                        else
+                        {
+                            MoveHooking();
+                        }
                         break;
                     default:
+                        Move();
                         break;
                 }
 
                 break;
             case CharacterStateEnum.JumpingWall:
+                _rigidBody.drag = 0;
                 _rigidBody.gravityScale = 1;
                 Move();
                 JumpWall();
                 break;
             case CharacterStateEnum.Climbing:
                 _rigidBody.velocity = new Vector3();
+                _rigidBody.drag = 0;
                 _rigidBody.gravityScale = 0;
                 Moveclimbing();
                 JumpClimbing();
                 break;
             case CharacterStateEnum.Dead:
+                _rigidBody.drag = 0;
                 _rigidBody.gravityScale = 1;
                 break;
         }
@@ -315,6 +333,18 @@ public class Character : MonoBehaviour, HookableInterface
     }
 
     /// <summary>
+    /// Metodo responsavel por gerenciar o movimento do personagem na corda
+    /// </summary>
+    private void MoveHooking()
+    {
+        if (MovingToX != 0)
+        {
+            _velocity.Set(MovingToX * HookingVelocity, 0);
+            _rigidBody.AddForce(_velocity);
+        }
+    }
+
+    /// <summary>
     /// Metodo responsavel por executar o movimento do personagem na escada
     /// </summary>
     private void Moveclimbing()
@@ -443,6 +473,18 @@ public class Character : MonoBehaviour, HookableInterface
         get
         {
             return _rigidBody;
+        }
+    }
+
+    public float HookVelocity
+    {
+        get
+        {
+            return HookingVelocity;
+        }
+        set
+        {
+            HookingVelocity = value;
         }
     }
 }
