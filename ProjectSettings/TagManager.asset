@@ -22,7 +22,7 @@ TagManager:
   - Floor
   - FloorDeath
   - FloorWall
-  - FloorHanger
+  - HookHanger
   - Stair
   - 
   - 

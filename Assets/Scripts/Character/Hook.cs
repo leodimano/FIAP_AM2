@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(DistanceJoint2D))]
 public class Hook : MonoBehaviour
 {
     public Sprite HookSprite;
     public Sprite HookRopeSprite;
+    public float HookRangeRadius;
+    public float GrowRopeBy;
 
     public HookableInterface HookableObject;
 
     private Collider2D _hookHangerCollider;
 
-    private CircleCollider2D _hookCollider;
     private DistanceJoint2D _hookRopeJoint;
 
     private GameObject _hookGameObject;
@@ -23,7 +23,6 @@ public class Hook : MonoBehaviour
 
     public void Awake()
     {
-        _hookCollider = GetComponent<CircleCollider2D>();
         _hookRopeJoint = GetComponent<DistanceJoint2D>();
         HookableObject = GetComponent<HookableInterface>();
     }
@@ -36,16 +35,67 @@ public class Hook : MonoBehaviour
         }
     }
 
+    public void FixedUpdate()
+    {
+        if (HookableObject.HookState == HookStateEnum.NotHooking || HookableObject.HookState == HookStateEnum.HookInRange)
+        {
+            Collider2D _hookCollider = Physics2D.OverlapCircle(transform.position, HookRangeRadius, LayerMask.GetMask("HookHanger"));
 
+            if (_hookCollider != null && _hookCollider.tag == Constants.TAG_HOOK_HANGER)
+            {
+                switch (HookableObject.HookState)
+                {
+                    case HookStateEnum.Hooking:
+                        break;
+                    case HookStateEnum.HookInRange:
+                    case HookStateEnum.NotHooking:
+                        HookableObject.HookState = HookStateEnum.HookInRange;
+                        _hookHangerCollider = _hookCollider;
+                        break;
+                }
+            }
+            else
+            {
+                switch (HookableObject.HookState)
+                {
+                    case HookStateEnum.Hooking:
+                        break;
+                    case HookStateEnum.HookInRange:
+                    case HookStateEnum.NotHooking:
+                        HookableObject.HookState = HookStateEnum.HookInRange;
+                        _hookHangerCollider = null;
+                        break;
+                }
+            }
+        }
+    }
 
     public void DoHooking()
     {
         if (_hookHangerCollider != null)
         {
-            _hookRopeJoint.connectedAnchor = new Vector2(_hookHangerCollider.bounds.center.x, _hookHangerCollider.bounds.center.y);
+            Vector2 _colliderPosition = new Vector2(_hookHangerCollider.bounds.center.x, _hookHangerCollider.bounds.center.y);
+            float _distance = Mathf.Abs(Vector2.Distance(transform.position, _colliderPosition));
+            _hookRopeJoint.connectedAnchor = _colliderPosition;
             _hookRopeJoint.enabled = true;
+            _hookRopeJoint.distance = _distance;
             HookableObject.HookState = HookStateEnum.Hooking;
             ManageHookSprites(true);
+        }
+    }
+
+    public void ChangeRopeSize(bool GrowOrShrink)
+    {
+        if (HookableObject.HookState == HookStateEnum.Hooking)
+        {
+            if (GrowOrShrink)
+            {
+                _hookRopeJoint.distance += GrowRopeBy * Time.deltaTime;
+            }
+            else
+            {
+                _hookRopeJoint.distance -= GrowRopeBy * Time.deltaTime;
+            }
         }
     }
 
@@ -55,40 +105,6 @@ public class Hook : MonoBehaviour
         _hookHangerCollider = null;
         HookableObject.HookState = HookStateEnum.NotHooking;
         ManageHookSprites(false);
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == Constants.TAG_HOOK_HANGER)
-        {
-            switch (HookableObject.HookState)
-            {
-                case HookStateEnum.Hooking:
-                    break;
-                case HookStateEnum.HookInRange:
-                case HookStateEnum.NotHooking:
-                    HookableObject.HookState = HookStateEnum.HookInRange;
-                    _hookHangerCollider = collision;
-                    break;
-            }
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == Constants.TAG_HOOK_HANGER)
-        {
-            switch (HookableObject.HookState)
-            {
-                case HookStateEnum.Hooking:
-                    break;
-                case HookStateEnum.HookInRange:
-                case HookStateEnum.NotHooking:
-                    HookableObject.HookState = HookStateEnum.HookInRange;
-                    _hookHangerCollider = null;
-                    break;
-            }
-        }
     }
 
     private void ManageHookSprites(bool draw)

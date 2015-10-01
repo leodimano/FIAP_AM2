@@ -48,7 +48,6 @@ public class Character : MonoBehaviour, HookableInterface
     public float HookingDeaccelerationRate;
     private HookStateEnum _hookState;
 
-
     const float _skinWidth = .015f;
     float _verticalRaycastSpacing;
     float _horizontalRaycastSpacing;
@@ -57,6 +56,8 @@ public class Character : MonoBehaviour, HookableInterface
 
     /* Required Components */
     private Rigidbody2D _rigidBody;
+    private Hook _hookWeapon;
+    private Animator _animatorSprite;
 
     /* Variaveis de memoria Stacked */
     private Vector2 _velocity;
@@ -65,15 +66,20 @@ public class Character : MonoBehaviour, HookableInterface
     /* Sprite */
     private SpriteRenderer _mainSprite;
 
+    const string ANIM_IS_RUNNING = "IsRunning";
+    const string ANIM_IS_ON_STAIR = "IsOnStair";
+    const string ANIM_IS_CLIMBING_STAIR = "IsClimbingStair";
+
     public void Awake()
     {
         _velocity = new Vector2();
         _jumpForce = new Vector2();
 
         _rigidBody = GetComponent<Rigidbody2D>();
+        _hookWeapon = GetComponent<Hook>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _raycastOrigin = new RaycastOrigin();
-
+        _animatorSprite = GetComponentInChildren<Animator>();
         _mainSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
         IsMovementEnabled = true;
@@ -110,7 +116,7 @@ public class Character : MonoBehaviour, HookableInterface
                         Move();
                         if (DoJump)
                         {
-                            transform.GetComponent<Hook>().DoHooking();
+                            _hookWeapon.DoHooking();
                             DoJump = false;
                         }
                         break;
@@ -120,8 +126,11 @@ public class Character : MonoBehaviour, HookableInterface
 
                         if (DoJump)
                         {
-                            transform.GetComponent<Hook>().UnDoHooking();
-                            DoJump = false;
+                            if (_hookWeapon != null)
+                            {
+                                _hookWeapon.UnDoHooking();
+                                DoJump = false;
+                            }
                         }
                         else
                         {
@@ -155,8 +164,46 @@ public class Character : MonoBehaviour, HookableInterface
 
         ChangeDirection();
 
-        MovingToX = 0;
-        MovingToY = 0;
+        SetCharacterAnimation();
+
+        //MovingToX = 0;
+        //MovingToY = 0;
+    }
+
+    /// <summary>
+    /// Metodo responsabel por gerenciar as animacoes do personagem
+    /// </summary>
+    private void SetCharacterAnimation()
+    {
+        switch (CharacterState)
+        {
+            case CharacterStateEnum.Idle:
+                _animatorSprite.SetBool(ANIM_IS_RUNNING, false);
+                _animatorSprite.SetBool(ANIM_IS_ON_STAIR, false);
+                _animatorSprite.SetBool(ANIM_IS_CLIMBING_STAIR, false);
+                break;
+            case CharacterStateEnum.Running:
+                _animatorSprite.SetBool(ANIM_IS_RUNNING, true);
+                break;
+            case CharacterStateEnum.Jumping:
+                _animatorSprite.SetBool(ANIM_IS_RUNNING, false);
+                _animatorSprite.SetBool(ANIM_IS_ON_STAIR, false);
+                _animatorSprite.SetBool(ANIM_IS_CLIMBING_STAIR, false);
+                break;
+            case CharacterStateEnum.Climbing:
+                _animatorSprite.SetBool(ANIM_IS_RUNNING, false);
+                _animatorSprite.SetBool(ANIM_IS_ON_STAIR, true);
+
+                if (MovingToY == 1 || MovingToY == -1)
+                {
+                    _animatorSprite.SetBool(ANIM_IS_CLIMBING_STAIR, true);
+                }
+                else
+                {
+                    _animatorSprite.SetBool(ANIM_IS_CLIMBING_STAIR, false);
+                }
+                break;
+        }
     }
 
     /// <summary>
@@ -342,6 +389,11 @@ public class Character : MonoBehaviour, HookableInterface
             _velocity.Set(MovingToX * HookingVelocity, 0);
             _rigidBody.AddForce(_velocity);
         }
+
+        if (MovingToY != 0)
+        {
+            _hookWeapon.ChangeRopeSize(!(MovingToY > 0));
+        }
     }
 
     /// <summary>
@@ -364,7 +416,7 @@ public class Character : MonoBehaviour, HookableInterface
             (MovingToY == -1 && _boxCollider2D.bounds.min.y <= StairCollider.bounds.min.y))
             MovingToY = 0;
 
-        transform.Translate(/*ClimbingXVelocity * MovingToX * Time.deltaTime*/ 0, ClimbingYVelocity * MovingToY * Time.deltaTime, 0);
+        transform.Translate(0, ClimbingYVelocity * MovingToY * Time.deltaTime, 0);
     }
 
     /// <summary>

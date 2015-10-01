@@ -60,7 +60,12 @@ public class LampScript : MonoBehaviour
         _lightComponente = GetComponent<Light>();
         _defaultLightColor = _lightComponente.color;
         _defaultIntensity = _lightComponente.intensity;
-        _defaultRadius = _lightComponente.spotAngle;
+
+
+        if (_lightComponente.type == LightType.Point)
+            _defaultRadius = _lightComponente.spotAngle;
+        else
+            _defaultRadius = _lightComponente.range;
     }
 
     // Update is called once per frame
@@ -119,14 +124,23 @@ public class LampScript : MonoBehaviour
                 _newRadiusVariance = _defaultRadius + UnityEngine.Random.Range(-5f, 5f);
             }
 
-            //_newRadiusVariance = Mathf.Clamp(_newRadiusVariance, 1, 179);
-
-            _lightComponente.spotAngle = Mathf.LerpAngle(_lightComponente.spotAngle, _newRadiusVariance, RadiusVarianceT * Time.deltaTime);
-
-            if ((_lightComponente.spotAngle > _defaultRadius && _lightComponente.spotAngle < NewRadiusVariance) ||
-                (_lightComponente.spotAngle < _defaultRadius && _lightComponente.spotAngle > NewRadiusVariance))
+            if (_lightComponente.type == LightType.Spot)
             {
-                _lerpingToRadiusVariance = !_lerpingToRadiusVariance;
+                _lightComponente.spotAngle = Mathf.LerpAngle(_lightComponente.spotAngle, _newRadiusVariance, RadiusVarianceT * Time.deltaTime);
+                if ((_lightComponente.spotAngle > _defaultRadius && _lightComponente.spotAngle < NewRadiusVariance) ||
+                    (_lightComponente.spotAngle < _defaultRadius && _lightComponente.spotAngle > NewRadiusVariance))
+                {
+                    _lerpingToRadiusVariance = !_lerpingToRadiusVariance;
+                }
+            }
+            else
+            {
+                _lightComponente.range = Mathf.LerpAngle(_lightComponente.range, _newRadiusVariance, RadiusVarianceT * Time.deltaTime);
+                if ((_lightComponente.range > _defaultRadius && _lightComponente.range < NewRadiusVariance) ||
+                    (_lightComponente.range < _defaultRadius && _lightComponente.range > NewRadiusVariance))
+                {
+                    _lerpingToRadiusVariance = !_lerpingToRadiusVariance;
+                }
             }
         }
     }

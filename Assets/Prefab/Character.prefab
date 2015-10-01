@@ -1,22 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &110728
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 408090}
-  - 108: {fileID: 10846692}
-  - 114: {fileID: 11476444}
-  m_Layer: 0
-  m_Name: Area Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &112980
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,12 +12,28 @@ GameObject:
   - 61: {fileID: 6122108}
   - 114: {fileID: 11445758}
   - 114: {fileID: 11413914}
-  - 58: {fileID: 5862272}
   - 232: {fileID: 23206676}
   - 114: {fileID: 11422230}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &123070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 451864}
+  - 108: {fileID: 10821382}
+  - 114: {fileID: 11488062}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +47,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 479052}
   - 212: {fileID: 21243510}
+  - 95: {fileID: 9574068}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Player
@@ -62,21 +62,21 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.6599998, y: -15.9700003, z: -1}
+  m_LocalPosition: {x: 36.8300018, y: -15.9200001, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 479052}
-  - {fileID: 408090}
+  - {fileID: 451864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &408090
+--- !u!4 &451864
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110728}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: -.0599999987, y: -.230000004, z: 6.69999981}
+  m_GameObject: {fileID: 123070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 403276}
@@ -109,19 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5862272
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112980}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 4
 --- !u!61 &6122108
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -135,19 +122,36 @@ BoxCollider2D:
   m_Offset: {x: .0393996239, y: -.0676048994}
   serializedVersion: 2
   m_Size: {x: .633736551, y: 1.81408715}
---- !u!108 &10846692
+--- !u!95 &9574068
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173398}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4415e6efaff4c2c4ea5ead05dde5361d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &10821382
 Light:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110728}
+  m_GameObject: {fileID: 123070}
   m_Enabled: 1
   serializedVersion: 6
-  m_Type: 0
+  m_Type: 2
   m_Color: {r: .95588237, g: .905955493, b: .231942043, a: 1}
-  m_Intensity: 4
-  m_Range: 15
-  m_SpotAngle: 120
+  m_Intensity: 1
+  m_Range: 80
+  m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -191,6 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HookSprite: {fileID: 21300000, guid: 0a33cbac01d424342acf53dba94767a5, type: 3}
   HookRopeSprite: {fileID: 21300000, guid: da7d152fc09df50409b057e2cfd5ed37, type: 3}
+  HookRangeRadius: 4
+  GrowRopeBy: 5
 --- !u!114 &11445758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,10 +209,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterState: 0
-  Velocity: 12
+  Velocity: 6
   DeaccelerationTime: .800000012
   JumpForce: 1100
-  H_StairJumpForce: 1500
+  H_StairJumpForce: 1100
   FloorMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -217,7 +223,7 @@ MonoBehaviour:
   FacingRight: 0
   OnStair: 0
   ClimbingXVelocity: 5
-  ClimbingYVelocity: 5
+  ClimbingYVelocity: 2
   OnJumpinWall: 0
   DoJump: 1
   MovingToX: 0
@@ -230,12 +236,12 @@ MonoBehaviour:
   HorizontalRaycastDistance: .0799999982
   HookingVelocity: 500
   HookingDeaccelerationRate: .25
---- !u!114 &11476444
+--- !u!114 &11488062
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110728}
+  m_GameObject: {fileID: 123070}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e94be78985fb0644bda068f8550b212, type: 3}
@@ -245,11 +251,11 @@ MonoBehaviour:
   ColorVarianceT: 0
   ColorVarianceRGBA: {r: 0, g: 0, b: 0, a: 0}
   IntensityVariance: 1
-  IntensityVarianceT: 12
-  NewIntensityVariance: 3.70000005
+  IntensityVarianceT: 5
+  NewIntensityVariance: 2
   RadiusVariance: 1
-  RadiusVarianceT: 10
-  NewRadiusVariance: 110
+  RadiusVarianceT: 3
+  NewRadiusVariance: 80
 --- !u!212 &21243510
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -274,7 +280,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9488eef04d087c74b85504e9672856d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c108daf146b25d840b7e229e44bb543e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!232 &23206676
 DistanceJoint2D:
