@@ -9,6 +9,8 @@ public class Constants
     public const string TAG_STAIR = "Stair";
     public const string TAG_JUMPING_WALL = "JumpingWall";
     public const string TAG_HOOK_HANGER = "HookHanger";
+    public const string TAG_SPIKE_ACTIVATOR = "SpikeActivator";
+    public const string TAG_SPIKE_DEACTIVATOR = "SpikeDeactivator";
 
     // LAYERs
     public const string LAYER_HOOK_HANGER = "HookHanger";

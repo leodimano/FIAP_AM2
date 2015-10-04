@@ -7,6 +7,8 @@ TagManager:
   - Stair
   - JumpingWall
   - HookHanger
+  - SpikeActivator
+  - SpikeDeactivator
   layers:
   - Default
   - TransparentFX

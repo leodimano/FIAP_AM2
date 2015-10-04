@@ -18,13 +18,18 @@ public class Hook : MonoBehaviour
     private GameObject _hookGameObject;
     private GameObject _hookRopeGameObject;
 
+    private int HookHangerLayerMask;
+
     private const string HOOK_GO_NAME = "HookGO";
     private const string HOOK_ROPE_GO_NAME = "HookRopeGO";
+
+
 
     public void Awake()
     {
         _hookRopeJoint = GetComponent<DistanceJoint2D>();
         HookableObject = GetComponent<HookableInterface>();
+        HookHangerLayerMask = LayerMask.GetMask("HookHanger");
     }
 
     public void Update()
@@ -39,7 +44,7 @@ public class Hook : MonoBehaviour
     {
         if (HookableObject.HookState == HookStateEnum.NotHooking || HookableObject.HookState == HookStateEnum.HookInRange)
         {
-            Collider2D _hookCollider = Physics2D.OverlapCircle(transform.position, HookRangeRadius, LayerMask.GetMask("HookHanger"));
+            Collider2D _hookCollider = Physics2D.OverlapCircle(transform.position, HookRangeRadius, HookHangerLayerMask);
 
             if (_hookCollider != null && _hookCollider.tag == Constants.TAG_HOOK_HANGER)
             {

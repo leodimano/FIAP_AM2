@@ -58,13 +58,17 @@ public class Character : MonoBehaviour, HookableInterface
     private Rigidbody2D _rigidBody;
     private Hook _hookWeapon;
     private Animator _animatorSprite;
+    private SpriteRenderer _mainSprite;
+    private AudioSource _audioSource;
 
     /* Variaveis de memoria Stacked */
     private Vector2 _velocity;
     private Vector2 _jumpForce;
 
-    /* Sprite */
-    private SpriteRenderer _mainSprite;
+    /* AudioClips */
+    public AudioClip AudioFootStep;
+    public AudioClip AudioJump;
+    public AudioClip AudioDeath;
 
     const string ANIM_IS_RUNNING = "IsRunning";
     const string ANIM_IS_ON_STAIR = "IsOnStair";
@@ -79,8 +83,9 @@ public class Character : MonoBehaviour, HookableInterface
         _hookWeapon = GetComponent<Hook>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _raycastOrigin = new RaycastOrigin();
-        _animatorSprite = GetComponentInChildren<Animator>();
-        _mainSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        _animatorSprite = GetComponent<Animator>();
+        _mainSprite = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
 
         IsMovementEnabled = true;
         FacingRight = true;
@@ -433,8 +438,9 @@ public class Character : MonoBehaviour, HookableInterface
 
             // Adiciona a forca do pulo a partir da escada
             _jumpForce.Set(H_StairJumpForce * MovingToX, JumpForce);
-
             _rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
+
+            PlayJump();
         }
     }
 
@@ -449,6 +455,7 @@ public class Character : MonoBehaviour, HookableInterface
             _rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
             DoJump = false;
             StartJumping = true;
+            PlayJump();
         }
     }
 
@@ -465,6 +472,7 @@ public class Character : MonoBehaviour, HookableInterface
             _rigidBody.AddForce(_jumpForce, ForceMode2D.Impulse);
             DoJump = false;
             StartJumping = true;
+            PlayJump();
         }
     }
 
@@ -539,6 +547,24 @@ public class Character : MonoBehaviour, HookableInterface
             HookingVelocity = value;
         }
     }
+
+    #region AudioManager
+
+    public void PlayFootStep()
+    {
+        _audioSource.Stop();
+        _audioSource.clip = AudioFootStep;
+        _audioSource.Play();
+    }
+
+    public void PlayJump()
+    {
+        _audioSource.Stop();
+        _audioSource.clip = AudioJump;
+        _audioSource.Play();
+    }
+
+    #endregion
 }
 
 public enum CharacterStateEnum
