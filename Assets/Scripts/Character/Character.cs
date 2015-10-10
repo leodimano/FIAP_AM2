@@ -70,9 +70,17 @@ public class Character : MonoBehaviour, HookableInterface
     public AudioClip AudioJump;
     public AudioClip AudioDeath;
 
+    /* LastCheck Point */
+    public Vector3 LastCheckPoint;
+
     const string ANIM_IS_RUNNING = "IsRunning";
     const string ANIM_IS_ON_STAIR = "IsOnStair";
     const string ANIM_IS_CLIMBING_STAIR = "IsClimbingStair";
+    const string ANIM_IS_ON_FLOOR = "OnFloor";
+    const string ANIM_IS_VERTICAL_VELOCITY = "VerticalVelocity";
+    const string ANIM_IS_HORIZONTAL_VELOCITY = "HorizontalVelocity";
+    const string ANIM_IS_HOOKING = "IsHooking";
+    const string ANIM_IS_DEATH = "IsDeath";
 
     public void Awake()
     {
@@ -89,13 +97,18 @@ public class Character : MonoBehaviour, HookableInterface
 
         IsMovementEnabled = true;
         FacingRight = true;
+
+        LastCheckPoint = transform.position;
+    }
+
+    public void Update()
+    {
+        CheckCollision();
     }
 
     public void FixedUpdate()
     {
         SetCharacterState();
-
-        CheckCollision();
 
         switch (CharacterState)
         {
@@ -180,6 +193,12 @@ public class Character : MonoBehaviour, HookableInterface
     /// </summary>
     private void SetCharacterAnimation()
     {
+        _animatorSprite.SetBool(ANIM_IS_DEATH, false);
+        _animatorSprite.SetBool(ANIM_IS_ON_FLOOR, OnFloor);
+        _animatorSprite.SetFloat(ANIM_IS_VERTICAL_VELOCITY, _rigidBody.velocity.y);
+        _animatorSprite.SetFloat(ANIM_IS_HORIZONTAL_VELOCITY, _rigidBody.velocity.x);
+        _animatorSprite.SetBool(ANIM_IS_HOOKING, false);
+
         switch (CharacterState)
         {
             case CharacterStateEnum.Idle:
@@ -191,11 +210,23 @@ public class Character : MonoBehaviour, HookableInterface
                 _animatorSprite.SetBool(ANIM_IS_RUNNING, true);
                 break;
             case CharacterStateEnum.Jumping:
-                _animatorSprite.SetBool(ANIM_IS_RUNNING, false);
-                _animatorSprite.SetBool(ANIM_IS_ON_STAIR, false);
-                _animatorSprite.SetBool(ANIM_IS_CLIMBING_STAIR, false);
+
+                switch (HookState)
+                {
+                    case HookStateEnum.Hooking:
+                        _animatorSprite.SetBool(ANIM_IS_ON_FLOOR, true);
+                        _animatorSprite.SetBool(ANIM_IS_HOOKING, true);
+                        break;
+                    default:
+                        _animatorSprite.SetBool(ANIM_IS_RUNNING, false);
+                        _animatorSprite.SetBool(ANIM_IS_ON_STAIR, false);
+                        _animatorSprite.SetBool(ANIM_IS_CLIMBING_STAIR, false);
+                        break;
+                }
+
                 break;
             case CharacterStateEnum.Climbing:
+                _animatorSprite.SetBool(ANIM_IS_ON_FLOOR, true);
                 _animatorSprite.SetBool(ANIM_IS_RUNNING, false);
                 _animatorSprite.SetBool(ANIM_IS_ON_STAIR, true);
 
@@ -207,6 +238,9 @@ public class Character : MonoBehaviour, HookableInterface
                 {
                     _animatorSprite.SetBool(ANIM_IS_CLIMBING_STAIR, false);
                 }
+                break;
+            case CharacterStateEnum.Dead:
+                _animatorSprite.SetBool(ANIM_IS_DEATH, true);
                 break;
         }
     }
@@ -233,47 +267,50 @@ public class Character : MonoBehaviour, HookableInterface
     /// </summary>
     private void SetCharacterState()
     {
-        if (!OnFloor && StartJumping)
+        if (CharacterState != CharacterStateEnum.Dead)
         {
-            StartJumping = false;
-            CharacterState = CharacterStateEnum.Jumping;
-            return;
-        }
+            if (!OnFloor && StartJumping)
+            {
+                StartJumping = false;
+                CharacterState = CharacterStateEnum.Jumping;
+                return;
+            }
 
-        // Check if the player is on a Stair
-        if (OnStair && CharacterState == CharacterStateEnum.Climbing)
-        {
-            return;
-        }
-        else if (OnStair && MovingToY == 1)
-        {
-            CharacterState = CharacterStateEnum.Climbing;
+            // Check if the player is on a Stair
+            if (OnStair && CharacterState == CharacterStateEnum.Climbing)
+            {
+                return;
+            }
+            else if (OnStair && MovingToY == 1)
+            {
+                CharacterState = CharacterStateEnum.Climbing;
 
-            // Corrige a posicao do personagem em relacao a escada
-            transform.position = new Vector3(StairCollider.bounds.center.x, transform.position.y, transform.position.z);
-            return;
-        }
+                // Corrige a posicao do personagem em relacao a escada
+                transform.position = new Vector3(StairCollider.bounds.center.x, transform.position.y, transform.position.z);
+                return;
+            }
 
-        if (OnJumpinWall)
-        {
-            CharacterState = CharacterStateEnum.JumpingWall;
-            return;
-        }
+            if (OnJumpinWall)
+            {
+                CharacterState = CharacterStateEnum.JumpingWall;
+                return;
+            }
 
-        if (!OnFloor)
-        {
-            StartJumping = false;
-            CharacterState = CharacterStateEnum.Jumping;
-            return;
-        }
+            if (!OnFloor)
+            {
+                StartJumping = false;
+                CharacterState = CharacterStateEnum.Jumping;
+                return;
+            }
 
-        if (OnFloor && _rigidBody.velocity.x != 0)
-        {
-            CharacterState = CharacterStateEnum.Running;
-            return;
-        }
+            if (OnFloor && _rigidBody.velocity.x != 0)
+            {
+                CharacterState = CharacterStateEnum.Running;
+                return;
+            }
 
-        CharacterState = CharacterStateEnum.Idle;
+            CharacterState = CharacterStateEnum.Idle;
+        }
     }
 
     /// <summary>
@@ -315,13 +352,13 @@ public class Character : MonoBehaviour, HookableInterface
 
             if (_bottomRaycast)
                 OnFloor = true;
-            else if (Application.isEditor)
-                Debug.DrawRay(_bottomRaycastOrigin, Vector2.down * VerticalRaycastDistance, Color.red);
+            /*else if (Application.isEditor)
+                Debug.DrawRay(_bottomRaycastOrigin, Vector2.down * VerticalRaycastDistance, Color.red);*/
 
             if (_topRaycast)
                 OnTop = true;
-            else if (Application.isEditor)
-                Debug.DrawRay(_topRaycastOrigin, Vector2.up * VerticalRaycastDistance, Color.red);
+            /*else if (Application.isEditor)
+                Debug.DrawRay(_topRaycastOrigin, Vector2.up * VerticalRaycastDistance, Color.red);*/
         }
 
         for (int i = 0; i < HorizontalRaycastCount; i++)
@@ -334,13 +371,13 @@ public class Character : MonoBehaviour, HookableInterface
 
             if (_rightRaycast)
                 OnRight = true;
-            else if (Application.isEditor)
-                Debug.DrawRay(_rightRaycastOrigin, Vector2.right * HorizontalRaycastDistance, Color.red);
+            /*else if (Application.isEditor)
+                Debug.DrawRay(_rightRaycastOrigin, Vector2.right * HorizontalRaycastDistance, Color.red);*/
 
             if (_leftRaycast)
                 OnLeft = true;
-            else if (Application.isEditor)
-                Debug.DrawRay(_leftRaycastOrigin, Vector2.left * HorizontalRaycastDistance, Color.red);
+            /*else if (Application.isEditor)
+                Debug.DrawRay(_leftRaycastOrigin, Vector2.left * HorizontalRaycastDistance, Color.red);*/
         }
     }
 
@@ -476,6 +513,24 @@ public class Character : MonoBehaviour, HookableInterface
         }
     }
 
+    /// <summary>
+    /// Metodo responsavel por gerenciar a morte do personagem
+    /// </summary>
+    public void DoDie()
+    {
+        _hookWeapon.UnDoHooking();
+        CharacterState = CharacterStateEnum.Dead;
+    }
+
+    /// <summary>
+    /// Metodo responsavel por gerenciar o respawn do personagem
+    /// </summary>
+    public void Respawn()
+    {
+        CharacterState = CharacterStateEnum.Idle;
+        transform.position = LastCheckPoint;
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == Constants.TAG_JUMPING_WALL)
@@ -489,6 +544,14 @@ public class Character : MonoBehaviour, HookableInterface
         if (collision.gameObject.tag == Constants.TAG_JUMPING_WALL)
         {
             OnJumpinWall = false;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == Constants.TAG_DEATH_TRAP)
+        {
+            DoDie();
         }
     }
 

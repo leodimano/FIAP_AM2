@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Hero_OnStair
+  m_Name: Hero_Hooking_1
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -18,7 +18,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300010, guid: c108daf146b25d840b7e229e44bb543e, type: 3}
+      value: {fileID: 21300046, guid: 6049bdf1bc2ac994fb654f7fe8dfcd68, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -37,7 +37,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300010, guid: c108daf146b25d840b7e229e44bb543e, type: 3}
+    - {fileID: 21300046, guid: 6049bdf1bc2ac994fb654f7fe8dfcd68, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0

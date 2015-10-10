@@ -9,6 +9,7 @@ TagManager:
   - HookHanger
   - SpikeActivator
   - SpikeDeactivator
+  - DeathTrap
   layers:
   - Default
   - TransparentFX

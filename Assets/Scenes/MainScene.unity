@@ -169,11 +169,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2537785}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 51.0800133, y: -37.8299904, z: -10}
+  m_LocalPosition: {x: 6.40000153, y: 1.60741639, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!114 &2537791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,105 +650,6 @@ BoxCollider2D:
   m_Offset: {x: .5, y: -4.5}
   serializedVersion: 2
   m_Size: {x: 1, y: 9}
---- !u!1 &63410894
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 63410896}
-  - 114: {fileID: 63410895}
-  m_Layer: 0
-  m_Name: Environment (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &63410895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 63410894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38be50e60827b454fa3ada30ad16a60c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  materialDefaultFile: {fileID: 2100000, guid: 6a90e2b5cb5d0fc4f95b1d6ef8625b5e, type: 2}
-  MapTMX: {fileID: 4900000, guid: 25930b79efe1b204f94ef50bdafe378d, type: 3}
-  MapTMXPath: 
-  DefaultSortingOrder: 0
-  tileObjectElipsePrecision: 16
-  simpleTileObjectCalculation: 1
-  clipperArcTolerance: .25
-  clipperMiterLimit: 2
-  clipperJoinType: 1
-  clipperEndType: 0
-  clipperDeltaOffset: 0
-  GenerateTileCollisions: 0
-  foldoutTileCollisions: 0
-  TileCollisionsZDepth: 0
-  TileCollisionsWidth: 1
-  TileCollisionsIsInner: 0
-  TileCollisionsIsTrigger: 0
-  TileCollisionsIs2D: 1
-  generateCollider: 0101010101
-  collidersZDepth:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  collidersWidth:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  objectLayers:
-  - CollisionsFloor
-  - CollisionsStair
-  - CollisionsJumpWall
-  - CollisionDeath
-  - CollisionHooker
-  collidersIsInner: 0000000000
-  collidersIsTrigger: 0001000101
-  collidersIs2D: 0101010101
-  isToLoadOnStart: 0
-  addTileNameToColliderName: 0
-  imageLayers: []
-  tileLayers:
-  - DungeonRock_BG
-  - Terrain
-  - RockPlatform
-  - Hookers
-  - JumpingWall
-  - Stairs
-  - Spikes
-  foldoutObjectsInLayer: 0
-  foldoutImageLayers: 0
-  foldoutObjectLayers: 1
-  foldoutLayers: 1
-  foldoutMapProperties: 0
-  MakeUniqueTiles: 00000000000000
-  tileLayersFoldoutProperties: 00000000000000
-  objectLayersFoldoutProperties: 0000000000
-  imageLayersFoldoutProperties: 
---- !u!4 &63410896
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 63410894}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -200, y: -200, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!1 &65359135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,7 +2033,7 @@ GameObject:
   - 61: {fileID: 521988645}
   m_Layer: 12
   m_Name: CollisionDeath_Object
-  m_TagString: Untagged
+  m_TagString: DeathTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -3102,7 +3003,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &793174598
 GameObject:
   m_ObjectHideFlags: 0
@@ -3212,6 +3113,7 @@ MonoBehaviour:
   AudioFootStep: {fileID: 8300000, guid: 603ea63ca87f320408af313abb12f372, type: 3}
   AudioJump: {fileID: 8300000, guid: 167f7ecd5c41cc849a99f2ce6a64e2ed, type: 3}
   AudioDeath: {fileID: 8300000, guid: 2c98e4c793ff38248a5ccbf0f5f35088, type: 3}
+  LastCheckPoint: {x: 0, y: 0, z: 0}
 --- !u!61 &793174603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3284,7 +3186,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: c108daf146b25d840b7e229e44bb543e, type: 3}
+  m_Sprite: {fileID: 21300066, guid: 6049bdf1bc2ac994fb654f7fe8dfcd68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!82 &793174607
 AudioSource:
@@ -3668,7 +3570,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &938982808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5449,7 +5351,7 @@ Transform:
   m_Children:
   - {fileID: 613690271}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!114 &1465774116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5972,7 +5874,7 @@ Transform:
   - {fileID: 29296043}
   - {fileID: 1620907692}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!82 &1620173395
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6342,7 +6244,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 413756, guid: 62614249390c1448798dac5550d9e0c7, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 185894, guid: 62614249390c1448798dac5550d9e0c7, type: 2}
       propertyPath: m_Name
@@ -6403,7 +6305,7 @@ GameObject:
   - 61: {fileID: 1740242785}
   m_Layer: 12
   m_Name: CollisionDeath_Object2
-  m_TagString: Untagged
+  m_TagString: DeathTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -6983,12 +6885,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 793174598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 51.0800018, y: -37.8300018, z: -1}
+  m_LocalPosition: {x: 1.60000002, y: 1.60000002, z: -1}
   m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children:
   - {fileID: 39194183}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &1839255336
 GameObject:
   m_ObjectHideFlags: 0
@@ -7000,7 +6902,7 @@ GameObject:
   - 61: {fileID: 1839255338}
   m_Layer: 12
   m_Name: CollisionDeath_Object3
-  m_TagString: Untagged
+  m_TagString: DeathTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

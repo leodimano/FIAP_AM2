@@ -1,0 +1,594 @@
+fileFormatVersion: 2
+guid: 6049bdf1bc2ac994fb654f7fe8dfcd68
+timeCreated: 1444446569
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Sprite_Hassan_0
+    21300002: Sprite_Hassan_1
+    21300004: Sprite_Hassan_2
+    21300006: Sprite_Hassan_3
+    21300008: Sprite_Hassan_4
+    21300010: Sprite_Hassan_5
+    21300012: Sprite_Hassan_6
+    21300014: Sprite_Hassan_7
+    21300016: Sprite_Hassan_8
+    21300018: Sprite_Hassan_9
+    21300020: Sprite_Hassan_10
+    21300022: Sprite_Hassan_11
+    21300024: Sprite_Hassan_12
+    21300026: Sprite_Hassan_13
+    21300028: Sprite_Hassan_14
+    21300030: Sprite_Hassan_15
+    21300032: Sprite_Hassan_16
+    21300034: Sprite_Hassan_17
+    21300036: Sprite_Hassan_18
+    21300038: Sprite_Hassan_19
+    21300040: Sprite_Hassan_20
+    21300042: Sprite_Hassan_21
+    21300044: Sprite_Hassan_22
+    21300046: Sprite_Hassan_23
+    21300048: Sprite_Hassan_24
+    21300050: Sprite_Hassan_25
+    21300052: Sprite_Hassan_26
+    21300054: Sprite_Hassan_27
+    21300056: Sprite_Hassan_28
+    21300058: Sprite_Hassan_29
+    21300060: Sprite_Hassan_30
+    21300062: Sprite_Hassan_31
+    21300064: Sprite_Hassan_32
+    21300066: Sprite_Hassan_33
+    21300068: Sprite_Hassan_34
+    21300070: Sprite_Hassan_35
+    21300072: Sprite_Hassan_36
+    21300074: Sprite_Hassan_37
+    21300076: Sprite_Hassan_38
+    21300078: Sprite_Hassan_39
+    21300080: Sprite_Hassan_40
+    21300082: Sprite_Hassan_41
+    21300084: Sprite_Hassan_42
+    21300086: Sprite_Hassan_43
+    21300088: Sprite_Hassan_44
+    21300090: Sprite_Hassan_45
+    21300092: Sprite_Hassan_46
+    21300094: Sprite_Hassan_47
+    21300096: Sprite_Hassan_48
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Sprite_Hassan_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 749
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 750
+        width: 31
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_2
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 749
+        width: 36
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_3
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 749
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_4
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 749
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_5
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 750
+        width: 26
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_6
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 673
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_7
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 673
+        width: 34
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_8
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 673
+        width: 30
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_9
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 673
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_10
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 673
+        width: 29
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_11
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 673
+        width: 31
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_12
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 595
+        width: 23
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 595
+        width: 23
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_14
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 595
+        width: 23
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_15
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 595
+        width: 23
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_16
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 525
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_17
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 525
+        width: 28
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_18
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 525
+        width: 22
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_19
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 525
+        width: 22
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_20
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 525
+        width: 22
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_21
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 525
+        width: 22
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_22
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 456
+        width: 37
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_23
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 461
+        width: 30
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_24
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 461
+        width: 29
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_25
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 389
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_26
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 389
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_27
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 391
+        width: 26
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_28
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 392
+        width: 27
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_29
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 393
+        width: 30
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_30
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 393
+        width: 35
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_31
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 392
+        width: 35
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_32
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 321
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_33
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 319
+        width: 27
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_34
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 319
+        width: 28
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_35
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 319
+        width: 27
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_36
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 319
+        width: 27
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_37
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 249
+        width: 24
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_38
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 250
+        width: 22
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_39
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 249
+        width: 25
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_40
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 250
+        width: 22
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_41
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 182
+        width: 38
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_42
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 181
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_43
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 181
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_44
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 114
+        width: 38
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_45
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 114
+        width: 40
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_46
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 115
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_47
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 41
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite_Hassan_48
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 41
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -20,6 +20,10 @@ public class Spike : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    private float _tempoInicio;
+    private float _coolDown;
+    private bool _iniciou;
+
     void Awake()
     {
         _posicaoInicial = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -28,50 +32,76 @@ public class Spike : MonoBehaviour
         _moverPara.Set(_posicaoInicial.x, _posicaoInicial.y - _caixaInicial.size.y / MovimentarEmUnidades, _posicaoInicial.z);
         _movimentoHabilitado = false;
 
+        _coolDown = 0;
+        _tempoInicio = Random.Range(0f, 200f);
+        _iniciou = false;
 
-        StartCoroutine(HabilitarMovimento(((float)Random.Range(0, 200)) / 100));
+        //StartCoroutine(HabilitarMovimento(((float)Random.Range(0, 200)) / 100));
     }
 
     // Update is called once per frame
+    // Removido o uso de Coroutines pelo consumo excessivo de memoria;
     void Update()
     {
-
-        _movendoPosicaoFinal = MovendoPosicaoFinal;
-
-        if (_movimentoHabilitado)
+        if (_iniciou)
         {
+            _movendoPosicaoFinal = MovendoPosicaoFinal;
 
-            if (MovendoPosicaoFinal)
+            if (_movimentoHabilitado)
             {
-                transform.position = Vector3.Lerp(transform.position, _posicaoInicial, PosicaoInicialT);
 
-                if (transform.position == _posicaoInicial)
+                if (MovendoPosicaoFinal)
                 {
-                    MovendoPosicaoFinal = false;
+                    transform.position = Vector3.Lerp(transform.position, _posicaoInicial, PosicaoInicialT);
+
+                    if (transform.position == _posicaoInicial)
+                    {
+                        MovendoPosicaoFinal = false;
+                    }
                 }
+                else
+                {
+                    transform.position = Vector3.Lerp(transform.position, _moverPara, PosicaoFinalT);
+
+                    if (transform.position == _moverPara)
+                    {
+                        PlayAudio();
+                        MovendoPosicaoFinal = true;
+                    }
+                }
+            }
+
+            if (!_movimentoHabilitado &&
+                ((_coolDown >= MoverPosicaoInicialSegundos && MovendoPosicaoFinal) ||
+                 (_coolDown >= MoverPosicaoFinalSegundos && !MovendoPosicaoFinal)))
+            {
+                _movimentoHabilitado = true;
+                _coolDown = 0;
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, _moverPara, PosicaoFinalT);
-
-                if (transform.position == _moverPara)
-                {
-                    PlayAudio();
-                    MovendoPosicaoFinal = true;
-                }
+                _coolDown += Time.time;
             }
 
+            if (MovendoPosicaoFinal && !_movendoPosicaoFinal)
+            {
+                _movimentoHabilitado = false;
+            }
+            else if (!MovendoPosicaoFinal && _movendoPosicaoFinal)
+            {
+                _movimentoHabilitado = false;
+            }
         }
+        else
+        {
+            _coolDown += Time.time;
 
-        if (MovendoPosicaoFinal && !_movendoPosicaoFinal)
-        {
-            _movimentoHabilitado = false;
-            StartCoroutine(HabilitarMovimento(MoverPosicaoInicialSegundos));
-        }
-        else if (!MovendoPosicaoFinal && _movendoPosicaoFinal)
-        {
-            _movimentoHabilitado = false;
-            StartCoroutine(HabilitarMovimento(MoverPosicaoFinalSegundos));
+            if (_coolDown > _tempoInicio)
+            {
+                _coolDown = 0;
+                _iniciou = true;
+                _movimentoHabilitado = true;
+            }
         }
     }
 
