@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="121" height="52" tilewidth="100" tileheight="100" nextobjectid="188">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="121" height="52" tilewidth="100" tileheight="100" nextobjectid="191">
  <tileset firstgid="1" name="Rock_Background" tilewidth="100" tileheight="100" tilecount="1">
   <image source="Sprites/rockrock.png" width="100" height="100"/>
   <terraintypes>
@@ -28,22 +28,25 @@
  <layer name="DungeonRock_BG" width="121" height="52">
   <properties>
    <property name="layer depth" value="1"/>
+   <property name="layer name" value="BackgroundPlane"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztmssOgzAMBNML///JPUWNKA9DYq+z2ZF8K9S7Q8SFUn5szXyKYKT1K8ectH7lmJPW8QbeRfjwKTrH7MjxWPZ9ouZqJ9EH2q3FsfU6cQza7UjHPf+JIGo/tFs5xjlGgnKMfs5XcnyFHD9nZcdsY+1Mjucda2dyPO9YO5NjTdSzdwaLY8u+s2WaybH3PXvyzji9mT36yATaT2bH0Xh14v1syvHzfRCd9DCz45knkox5ZnPcm8mbLB1c7RS979t81t+33x17sJX/b5vlONbx3vdIopzKMcZx1jN7BIPjO6qPUY4jz+8I0I7v9rE4vpuRjs/8Hr3zV3f8dK+e/VrHvXN2f+v+jI69eHOOPcbTb6Tjt9exO/b2G+kYveNTIhyfvdtXd+xxlqw+Ivx6ZBzBKo5HzpM+5dh3EGTMENkLs9tKxixMjjOQMROD40xkzOZ9ttjP7Z6MGdGeWNxWMmZF+2JxW8mYGe2NxW0lY3a0Pxa3lYwdoD2yuK1k7ALtk8VtJWMnkbswu63IsRzLsZgdORZCCLEaXzylDJw=
+   eJztk0FuwzAQA5VL/v/knoQaQequLe2SS3MAHZ2QHGmMX96H8xpGkaNfO9bk6NeONTk6foOzmBxew+9YHTvey+eeqHOWyayBdhtxHP3OfAftdqfjlf9EUJUP7daOcY6RoByj7/mTHJ9hx9d5smO1E93Mjvue6GZ23PdEN7Njn6q79xcqjiN5u3Xq5Dj7N1f6djyrnTP2YALth9lxNVmbZN9NO76eB7HJCp0ddz6VMPbp5ni1UzYsG5xlqs57t1/WHqvYcb3jbN/IDe5mROfv5JjRZyRndYcdjqM9d1Ldd2fW6h7/5Yk4jnyz03HUxdMdX821km98+fYulX67OM7izjuuuquVbyFCxPHd79Qdr+ZicozOeJUKx9H/Ztiv0nHGW4pmqNrdjnGOq2DMruwYAWOHyl2U3U4Yuyg5ZoCxk4JjJhi7Zb8t9Xf7CWNHtCcVtxPGrmhfKm4njJ3R3lTcThi7o/2puJ0wboD2qOJ2wrgF2qeK2wnjJpVZlN1O7NiO7dh0x46NMcY8jR+R7wsQ
   </data>
  </layer>
- <layer name="DungeonRock_BG_Detail" width="121" height="52">
+ <layer name="Dungeon_Shortcut" width="121" height="52">
   <properties>
-   <property name="layer depth" value="0.5"/>
+   <property name="layer depth" value="0"/>
+   <property name="layer name" value="SecondPlane"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0VEJACAUwMCXwf5hDeCfIMK4SzDYDAAAAAAAAAAAAAAAnNbvAJ7zuM/jPo/7PO7zuM9jAAAAAAAAAAAA4NYGIUEAfw==
+   eJzt2DEKgDAMQNFOHsD7H9ap0KVQaEKCvAdZ4/BBW8cAAAAAAAAAAAAAADj3LJO9P+sZnHlHfANNe4lurG8f8x0a2VjffiIb73b4HtdaG9/Obj+1ZuOs3dTLaqxvHxkt9O3Fvfj/Is5a/mUBAAAAAAAAAJDlA+y3AhE=
   </data>
  </layer>
  <layer name="Terrain" width="121" height="52">
   <properties>
    <property name="layer depth" value="0"/>
+   <property name="layer name" value="FirstPlane"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztm9tuxCAMRFHTbi///8FtpEVFG0Iw2MZ2ZqR5ykWGAwQD2VJK25/f01Fvz2uwbz+e/kxHfRTXYf8G4/gG4/gGY35/GzEYy7hWn6vUiukrXbcN2Dfjlso+Pjp2rLJGfJEYj5Rl5TegJ16O+MCY1q84/TMQHzdj7bWlVkz5ntoaGBdjS+09S5rxynFsZA1shFE5l+vpV9ra44vKmBLvDONoAuP4AuP4os7tWusOEutbYBxXlPEiEuON6R4Pssg45421XG1UtVyhJ5+MIIuMy5i483+qI0iK8cwaDoWBRG5d1glF1HJyjlMtSTHWmDNKrZto5TRacxiLY/VqgXH9eauMe74ZrwLj+vNWGe/xUWLb24QGXzDmE5XxLi3Gj/FikQTGR3lmXPs2zY4tHhlL5dIWGM/OJSwwLttpT3450o8194O4c2XPjDPbWh216ifHR6nDFXt+XPLA+CzX6e0PZ89RpM2YUx4YS9WvhRh66nNW3hhz7pFT1ozBuP5ObsYr5+lgXH8nGIMxNcYVjM/m7mD8f136LL+UtNl6Zmy9/K9axdYbY6mzAJL/Taxm642xJ1lhC8b8ssYWjPlklS0Yz8s6WzAelxe2YEyXN7Zg3C+vbO/C+OpMbGtP3zvbuzC+isXbv9mr6zMLjO2Z6589zvOGWrHchfHdbeFsLAzDsCX/AoU7Uqc=
@@ -52,6 +55,7 @@
  <layer name="RockPlatform" width="121" height="52">
   <properties>
    <property name="layer depth" value="0"/>
+   <property name="layer name" value="FirstPlane"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt2jsKwCAQBcC9gJ/7nzYWNhGiRQhLYAYWBRvLh88IAAAAAAAAAPhWG1PG1Ln23OsAAAAAAAAQ9w6nPuyze50e556pbc4AALKt/2bWvCXHAAC8t3vnkrkAAAAAAPi7C+bOAl8=
@@ -60,6 +64,7 @@
  <layer name="Hookers" width="121" height="52">
   <properties>
    <property name="layer depth" value="0"/>
+   <property name="layer name" value="FirstPlane"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt1jENAAAIBLG3gH+zTCggYSDtegYuAQAAAACu1LIDAMDwlgAAAAAAAAAAAAAAAAAAAADwWwPp9QBF
@@ -68,14 +73,16 @@
  <layer name="JumpingWall" width="121" height="52">
   <properties>
    <property name="layer depth" value="-1"/>
+   <property name="layer name" value="FirstPlane"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2UkRADAIBEE8xL/XSMgrB5tuBVQNvKgCAAAA2GPcHoDtNP7bKDvQ3aqfxv2tGmrcn8b5NAYAAAAAAABe5V+ZT+N8GufTGM5xb/k0hgzuGAAAAAAAgI4m00kCYQ==
+   eJzt2bENACEMADF2YP9dv6GnQS842VImuKTKGAAAAADnzTV0ady3a2wH3qdxn8Z9GvdpDAAAAAAAANzKv7JP4z6N+zSG/7i3Po37NO7TGAAAAAAAgFd9XCkC+Q==
   </data>
  </layer>
  <layer name="Stairs" width="121" height="52">
   <properties>
    <property name="layer depth" value="0"/>
+   <property name="layer name" value="FirstPlane"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt2MENgDAMBMHUQP/F0gHig3A2MxWcvD+vBQAAALx1/T2Az2ncp3Gfxn0a92ncp3Gfxn0a92nc99RY/waN+3ZqPG3PLjTu07hP4z6NzzbtptP2FEy76bQ9BdNuOm0PAAAAAAB+tyfQuE/jPo37NO7TuE/jPo37NAYA+N8NTx8DGQ==
@@ -84,6 +91,7 @@
  <layer name="Spikes" width="121" height="52">
   <properties>
    <property name="layer depth" value="0"/>
+   <property name="layer name" value="FirstPlane"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt2QEJAAAIBDFD2D+rJR4U3OBSXBUAAAAAAAAAwJ4OBQAAAAAAAADkePkAAAAAAABc5E0B8M0AYhQDNQ==
@@ -92,7 +100,6 @@
  <objectgroup name="CollisionsFloor">
   <properties>
    <property name="layer name" value="Floor"/>
-   <property name="tag" value=""/>
   </properties>
   <object id="23" x="0" y="0" width="300" height="1200">
    <properties>
@@ -249,7 +256,7 @@
     <property name="layer name" value="Floor"/>
    </properties>
   </object>
-  <object id="66" x="5900" y="2600" width="800" height="100">
+  <object id="66" x="5900" y="2600" width="900" height="100">
    <properties>
     <property name="layer name" value="Floor"/>
    </properties>
@@ -404,7 +411,7 @@
     <property name="layer name" value="Floor"/>
    </properties>
   </object>
-  <object id="107" x="9300" y="2000" width="100" height="400">
+  <object id="107" x="9300" y="2000" width="100" height="300">
    <properties>
     <property name="layer name" value="Floor"/>
    </properties>
@@ -474,7 +481,7 @@
     <property name="layer name" value="Floor"/>
    </properties>
   </object>
-  <object id="166" x="6700" y="2600" width="100" height="800">
+  <object id="166" x="6700" y="2700" width="100" height="700">
    <properties>
     <property name="layer name" value="Floor"/>
    </properties>
@@ -539,7 +546,7 @@
     <property name="layer name" value="Floor"/>
    </properties>
   </object>
-  <object id="186" x="9000" y="2300" width="300" height="100">
+  <object id="186" x="9000" y="2300" width="400" height="100">
    <properties>
     <property name="layer name" value="Floor"/>
    </properties>
@@ -551,6 +558,10 @@
   </object>
  </objectgroup>
  <objectgroup name="CollisionsStair">
+  <properties>
+   <property name="layer name" value="Stair"/>
+   <property name="tag" value="Stair"/>
+  </properties>
   <object id="122" x="1000" y="800" width="100" height="1700">
    <properties>
     <property name="layer name" value="Stair"/>
@@ -570,6 +581,12 @@
    </properties>
   </object>
   <object id="125" x="11300" y="3800" width="100" height="900">
+   <properties>
+    <property name="layer name" value="Stair"/>
+    <property name="tag" value="Stair"/>
+   </properties>
+  </object>
+  <object id="188" x="6800" y="2400" width="100" height="700">
    <properties>
     <property name="layer name" value="Stair"/>
     <property name="tag" value="Stair"/>
@@ -607,26 +624,34 @@
   </object>
  </objectgroup>
  <objectgroup name="CollisionDeath">
+  <properties>
+   <property name="layer name" value="FloorDeath"/>
+   <property name="tag" value="DeathTrap"/>
+  </properties>
   <object id="140" x="3700" y="4800" width="600" height="100">
    <properties>
-    <property name="Layer" value="FloorDeath"/>
-    <property name="Tag" value="DeathTrap"/>
+    <property name="layer name" value="FloorDeath"/>
+    <property name="tag" value="DeathTrap"/>
    </properties>
   </object>
   <object id="148" x="1700" y="3400" width="1700" height="100">
    <properties>
-    <property name="Layer" value="FloorDeath"/>
-    <property name="Tag" value="DeathTrap"/>
+    <property name="layer name" value="FloorDeath"/>
+    <property name="tag" value="DeathTrap"/>
    </properties>
   </object>
   <object id="150" x="3840" y="1700" width="1708" height="100">
    <properties>
-    <property name="Layer" value="FloorDeath"/>
-    <property name="Tag" value="DeathTrap"/>
+    <property name="layer name" value="FloorDeath"/>
+    <property name="tag" value="DeathTrap"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="CollisionHooker">
+  <properties>
+   <property name="layer name" value="HookHanger"/>
+   <property name="tag" value="HookHanger"/>
+  </properties>
   <object id="152" x="4200" y="1000" width="100" height="100">
    <properties>
     <property name="layer name" value="HookHanger"/>

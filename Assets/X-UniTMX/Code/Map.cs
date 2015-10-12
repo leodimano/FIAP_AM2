@@ -283,6 +283,10 @@ namespace X_UniTMX
         /// Custom Property for Colliders defining to send a message to all scripts attached to the collider's GameObject
         /// </summary>
         public const string Property_SendMessage = "send message";
+        /// <summary>
+        /// Custom property for Tile Layers defining the layer depth
+        /// </summary>
+        public const string Property_Layer_Depth = "layer depth";
         #endregion
 
         #region Constructors

@@ -67,8 +67,18 @@ namespace X_UniTMX
         /// Leonardo Dimano: Prepara a camada de layer para aceitar propriedades customizadas
         /// </summary>
         protected PropertyCollection Properties = null;
-
-        private const string PROPERTY_LAYER_DEPTH = "layer depth";
+        /// <summary>
+        /// Custom Property for Colliders defining the GameObject's Physics Layer by ID
+        /// </summary>
+        public const string Property_Layer = "layer";
+        /// <summary>
+        /// Custom Property for Colliders defining the GameObject's Physics Layer by name.
+        /// </summary>
+        public const string Property_LayerName = "Layer Name";
+        /// <summary>
+        /// Custom Property for Colliders defining the GameObject's Tag
+        /// </summary>
+        public const string Property_Tag = "Tag";
 
         /// <summary>
         /// Creates a Tile Layer from node
@@ -90,11 +100,6 @@ namespace X_UniTMX
             NanoXMLNode propertiesElement = node["properties"];
             if (propertiesElement != null)
                 Properties = new PropertyCollection(propertiesElement);
-
-            if (Properties != null && Properties[PROPERTY_LAYER_DEPTH] != null)
-            {
-                this.LayerDepth = Properties.GetPropertyAsFloat(PROPERTY_LAYER_DEPTH);
-            }
 
             // figure out what encoding is being used, if any, and process
             // the data appropriately
@@ -348,7 +353,32 @@ namespace X_UniTMX
             LayerGameObject.transform.localPosition = new Vector3(0, 0, this.LayerDepth);
             LayerGameObject.isStatic = true;
 
+
+
             LayerGameObject.SetActive(Visible);
+
+            ApplyCustomProperties(LayerGameObject, true);
+        }
+
+        void ApplyCustomProperties(GameObject obj, bool applyLayerDepth)
+        {
+            if (Properties != null)
+            {
+                if (Properties[Map.Property_Layer_Depth] != null && applyLayerDepth)
+                {
+                    obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, Properties.GetPropertyAsFloat(Map.Property_Layer_Depth));
+                }
+
+                if (Properties[Map.Property_LayerName] != null)
+                {
+                    obj.layer = LayerMask.NameToLayer(Properties.GetPropertyAsString(Map.Property_LayerName));
+                }
+
+                if (Properties[Map.Property_Tag] != null)
+                {
+                    obj.tag = Properties.GetPropertyAsString(Map.Property_Tag);
+                }
+            }
         }
 
         void CreateUniqueTiles(int startX, int endX, int startY, int endY, int directionX, int directionY)
@@ -692,6 +722,9 @@ namespace X_UniTMX
 
                 tileSetGameObject.isStatic = true;
                 tileSetGameObject.transform.parent = LayerGameObject.transform;
+
+                ApplyCustomProperties(tileSetGameObject, false);
+
                 LayerGameObjects.Add(tileSetGameObject);
             }
         }
