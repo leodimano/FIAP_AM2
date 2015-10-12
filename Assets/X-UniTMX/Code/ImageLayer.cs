@@ -80,7 +80,7 @@ namespace X_UniTMX
 				this.ColorKey = new Color((byte)Convert.ToInt32(r, 16), (byte)Convert.ToInt32(g, 16), (byte)Convert.ToInt32(b, 16));
 			}
 
-			SortingOrder = map.DefaultSortingOrder - LayerDepth;
+			SortingOrder = map.DefaultSortingOrder - (int)LayerDepth;
 			Parent = map.MapObject.transform;
 			TileWidth = map.TileWidth;
 

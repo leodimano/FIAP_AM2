@@ -81,6 +81,7 @@ public class Character : MonoBehaviour, HookableInterface
     const string ANIM_IS_HORIZONTAL_VELOCITY = "HorizontalVelocity";
     const string ANIM_IS_HOOKING = "IsHooking";
     const string ANIM_IS_DEATH = "IsDeath";
+    const string ANIM_ON_JUMPING_WALL = "OnJumpingWall";
 
     public void Awake()
     {
@@ -104,6 +105,10 @@ public class Character : MonoBehaviour, HookableInterface
     public void Update()
     {
         CheckCollision();
+
+        ChangeDirection();
+
+        SetCharacterAnimation();
     }
 
     public void FixedUpdate()
@@ -164,7 +169,7 @@ public class Character : MonoBehaviour, HookableInterface
             case CharacterStateEnum.JumpingWall:
                 _rigidBody.drag = 0;
                 _rigidBody.gravityScale = 1;
-                Move();
+                MoveJumpingWall();
                 JumpWall();
                 break;
             case CharacterStateEnum.Climbing:
@@ -179,13 +184,6 @@ public class Character : MonoBehaviour, HookableInterface
                 _rigidBody.gravityScale = 1;
                 break;
         }
-
-        ChangeDirection();
-
-        SetCharacterAnimation();
-
-        //MovingToX = 0;
-        //MovingToY = 0;
     }
 
     /// <summary>
@@ -198,6 +196,7 @@ public class Character : MonoBehaviour, HookableInterface
         _animatorSprite.SetFloat(ANIM_IS_VERTICAL_VELOCITY, _rigidBody.velocity.y);
         _animatorSprite.SetFloat(ANIM_IS_HORIZONTAL_VELOCITY, _rigidBody.velocity.x);
         _animatorSprite.SetBool(ANIM_IS_HOOKING, false);
+        _animatorSprite.SetBool(ANIM_ON_JUMPING_WALL, false);
 
         switch (CharacterState)
         {
@@ -241,6 +240,10 @@ public class Character : MonoBehaviour, HookableInterface
                 break;
             case CharacterStateEnum.Dead:
                 _animatorSprite.SetBool(ANIM_IS_DEATH, true);
+                break;
+            case CharacterStateEnum.JumpingWall:
+                _animatorSprite.SetBool(ANIM_IS_ON_FLOOR, true);
+                _animatorSprite.SetBool(ANIM_ON_JUMPING_WALL, true);
                 break;
         }
     }
@@ -352,13 +355,9 @@ public class Character : MonoBehaviour, HookableInterface
 
             if (_bottomRaycast)
                 OnFloor = true;
-            /*else if (Application.isEditor)
-                Debug.DrawRay(_bottomRaycastOrigin, Vector2.down * VerticalRaycastDistance, Color.red);*/
 
             if (_topRaycast)
                 OnTop = true;
-            /*else if (Application.isEditor)
-                Debug.DrawRay(_topRaycastOrigin, Vector2.up * VerticalRaycastDistance, Color.red);*/
         }
 
         for (int i = 0; i < HorizontalRaycastCount; i++)
@@ -371,13 +370,9 @@ public class Character : MonoBehaviour, HookableInterface
 
             if (_rightRaycast)
                 OnRight = true;
-            /*else if (Application.isEditor)
-                Debug.DrawRay(_rightRaycastOrigin, Vector2.right * HorizontalRaycastDistance, Color.red);*/
 
             if (_leftRaycast)
                 OnLeft = true;
-            /*else if (Application.isEditor)
-                Debug.DrawRay(_leftRaycastOrigin, Vector2.left * HorizontalRaycastDistance, Color.red);*/
         }
     }
 
@@ -419,6 +414,12 @@ public class Character : MonoBehaviour, HookableInterface
                 _rigidBody.velocity = Vector2.Lerp(_rigidBody.velocity, new Vector2(0, _rigidBody.velocity.y), DeaccelerationTime);
             }
         }
+    }
+
+    private void MoveJumpingWall()
+    {
+        Move();
+        transform.Translate(new Vector3(0, -0.5f, 0) * Time.deltaTime);
     }
 
     /// <summary>

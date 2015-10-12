@@ -8,6 +8,8 @@ public class Hook : MonoBehaviour
     public Sprite HookRopeSprite;
     public float HookRangeRadius;
     public float GrowRopeBy;
+    public float MinRopeLenght;
+    public float MaxRopeLenght;
 
     public HookableInterface HookableObject;
 
@@ -101,6 +103,8 @@ public class Hook : MonoBehaviour
             {
                 _hookRopeJoint.distance -= GrowRopeBy * Time.deltaTime;
             }
+
+            _hookRopeJoint.distance = Mathf.Clamp(_hookRopeJoint.distance, MinRopeLenght, MaxRopeLenght);
         }
     }
 
