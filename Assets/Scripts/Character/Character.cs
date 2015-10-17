@@ -521,7 +521,10 @@ public class Character : MonoBehaviour, HookableInterface
     {
         _hookWeapon.UnDoHooking();
         CharacterState = CharacterStateEnum.Dead;
-    }
+		_audioSource.Stop ();
+		_audioSource.clip = AudioDeath;
+		_audioSource.Play ();
+	}
 
     /// <summary>
     /// Metodo responsavel por gerenciar o respawn do personagem
@@ -554,6 +557,15 @@ public class Character : MonoBehaviour, HookableInterface
         {
             DoDie();
         }
+
+        if (collision.tag == Constants.TAG_CHECK_POINT)
+        {
+			LastCheckPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, transform.position.z);
+        }
+
+		if (collision.tag == Constants.TAG_ENDGAME) {
+			Application.LoadLevel("CreditsScene");
+		}
     }
 
     public void OnTriggerStay2D(Collider2D collision)

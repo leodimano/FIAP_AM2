@@ -10,6 +10,8 @@ TagManager:
   - SpikeActivator
   - SpikeDeactivator
   - DeathTrap
+  - CheckPoint
+  - EndGame
   layers:
   - Default
   - TransparentFX

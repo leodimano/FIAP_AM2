@@ -16,6 +16,7 @@ public class MainCamera : MonoBehaviour
     private Rigidbody2D _characterRigidBody;
 
 
+
     public void Awake()
     {
         _offsetPosition = new Vector3();

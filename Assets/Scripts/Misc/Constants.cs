@@ -12,6 +12,8 @@ public class Constants
     public const string TAG_SPIKE_ACTIVATOR = "SpikeActivator";
     public const string TAG_SPIKE_DEACTIVATOR = "SpikeDeactivator";
     public const string TAG_DEATH_TRAP = "DeathTrap";
+    public const string TAG_CHECK_POINT = "CheckPoint";
+	public const string TAG_ENDGAME = "EndGame";
 
     // LAYERs
     public const string LAYER_HOOK_HANGER = "HookHanger";
